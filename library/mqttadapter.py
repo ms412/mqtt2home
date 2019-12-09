@@ -22,6 +22,15 @@ class mqttadapter():
 
         self._broker = mqttc(logger)
 
+    def connectionState(self):
+        self._log.debug('Methode: connectionState()')
+        _temp = self._broker.state()
+        self._log.debug('State %s',_temp)
+        if not _temp['CONNECTED']:
+            return False
+
+        return True
+
     def connect(self, host, port=1883):
 
    #     print('Connect')
@@ -66,39 +75,6 @@ class mqttadapter():
 
         self._log.error('Timeout to subscribe')
         return False
-
-    def publish_old(self, topic, message):
-
-        self._broker.publish(topic, message)
-
-        _timeout = time.time() + 5
-        while _timeout > time.time():
-            time.sleep(1)
-            if self._broker.state()['PUBLISHED'] == True:
-                self._log.info = ('MQTT Published to topic %s', topic)
-                return True
-            else:
-                self._log.error('Could not deliver message, try again')
-
-        self._log.error('Failed to deliver message')
-        return False
-
-    def publish_zz(self,topic,message):
-        mid = self._broker.publish(topic, message)
-
-        if mid:
-            _timeout = time.time() + 5
-            while _timeout > time.time():
-                if self._broker.state()['PUBLISHED'] == mid:
-                    self._log.info = ('MQTT Published to topic %s', topic)
-                    return True
-                else:
-                    time.sleep(0.5)
-
-        else:
-            self._log('Cannot Publish message %s to topic: %s'%(message,topic))
-
-            return True
 
     def publish(self,topic,message):
         self._broker.publish(topic, message)

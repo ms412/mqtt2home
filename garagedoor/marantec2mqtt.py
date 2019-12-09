@@ -77,8 +77,18 @@ class manager(threading.Thread):
        # print('callback',threadId)
         #print(self._marantecObj[threadId].getGarageDoorState())
 
-        _topic = self._cfg_broker['PUBLISH'] + '/' + threadId + '/STATE'
-        self._mqtt.publish(_topic, json.dumps(self._marantecObj[threadId].getGarageDoorState()))
+        if self._mqtt.connectionState():
+
+            _topic = self._cfg_broker['PUBLISH'] + '/' + threadId + '/STATE'
+            self._mqtt.publish(_topic, json.dumps(self._marantecObj[threadId].getGarageDoorState()))
+
+        else:
+            self._log.error('Lost connection to mqtt broker, restart')
+            del self._mqtt
+            time.sleep(5)
+            self.start_mqtt()
+
+
 
        # for key, item in self._marantecObj[threadId].getGarageDoorState()[0]['fields'].items():
       #      print(key,item)
