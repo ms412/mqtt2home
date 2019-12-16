@@ -3,12 +3,13 @@
 import os
 import time
 import logging
+import threading
 #from interruptingcow import timeout
 import paho.mqtt.client as mqtt
 from queue import Queue
 
 
-#.class_logger = logging.getLogger('marantec.mqttadapter')
+
 
 class mqttadapter():
 
@@ -71,7 +72,7 @@ class mqttadapter():
                 self._broker.message_callback_add(topic, callback)
                 return True
             else:
-                self._log.error('MQTT could not subscribe try agian')
+                self._log.error('MQTT could not subscribe try again')
 
         self._log.error('Timeout to subscribe')
         return False
@@ -130,6 +131,7 @@ class mqttc(object):
         return True
 
     def on_disconnect(self, client, userdata, rc):
+        self._log.debug('Methode: on_disconnect %s, %s , %s'%(client,userdata,rc))
         if rc == mqtt.MQTT_ERR_SUCCESS:
             self._log.info('MQTT disconnected')
             self._state ['CONNECTED'] = False

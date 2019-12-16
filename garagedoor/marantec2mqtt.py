@@ -85,7 +85,7 @@ class manager(threading.Thread):
         else:
             self._log.error('Lost connection to mqtt broker, restart')
             del self._mqtt
-            time.sleep(5)
+            time.sleep(30)
             self.start_mqtt()
 
 
@@ -136,12 +136,17 @@ class manager(threading.Thread):
     def start_mqtt(self):
         self._log.debug('Methode: start_mqtt()')
         self._mqtt = mqttadapter(self._rootLoggerName)
-        self._mqtt.connect(self._cfg_broker['HOST'])
-        _subscribe = (self._cfg_broker['SUBSCRIBE'])+'/#'
-        self._mqtt.subscribe(_subscribe,self.callbackBroker)
+        if self._mqtt.connect(self._cfg_broker['HOST']):
+            _subscribe = (self._cfg_broker['SUBSCRIBE'])+'/#'
+            if self._mqtt.subscribe(_subscribe,self.callbackBroker):
+                return True
+            else:
+                self._log.error('Failed to subscribe')
+        else:
+            self._log.error('Failed to connect to MQTT')
       #  time.sleep(5)
        # self._mqtt.message_callback_add(_subscribe,self.callbackBroker)
-        return True
+        return False
 
 
 
