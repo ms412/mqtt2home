@@ -14,8 +14,8 @@
 
 
 __app__ = "Marantec Adapter"
-__VERSION__ = "0.3"
-__DATE__ = "18.11.2017"
+__VERSION__ = "0.8"
+__DATE__ = "18.12.2019"
 __author__ = "Markus Schiesser"
 __contact__ = "M.Schiesser@gmail.com"
 __copyright__ = "Copyright (C) 2019 Markus Schiesser"
@@ -30,7 +30,7 @@ import threading
 
 from configobj import ConfigObj
 from library.hwadapter import marantec250c
-from library.mqttadapter import mqttadapter
+from library.mqttclient import mqttclient
 from library.logger import loghandler
 #from library.S0Manager import S0manager
 
@@ -77,31 +77,9 @@ class manager(threading.Thread):
        # print('callback',threadId)
         #print(self._marantecObj[threadId].getGarageDoorState())
 
-        if self._mqtt.connectionState():
+        _topic = self._cfg_broker['PUBLISH'] + '/' + threadId + '/STATE'
+        self._mqtt.publish(_topic, json.dumps(self._marantecObj[threadId].getGarageDoorState()))
 
-            _topic = self._cfg_broker['PUBLISH'] + '/' + threadId + '/STATE'
-            self._mqtt.publish(_topic, json.dumps(self._marantecObj[threadId].getGarageDoorState()))
-
-        else:
-            self._log.error('Lost connection to mqtt broker, restart')
-            del self._mqtt
-            time.sleep(30)
-            self.start_mqtt()
-
-
-
-       # for key, item in self._marantecObj[threadId].getGarageDoorState()[0]['fields'].items():
-      #      print(key,item)
-          #  self._log.debug('Publish message %s to topic: %s'%(item,key))
-        #    _topic = self._cfg_broker['PUBLISH'] + '/' + threadId + '/STATE/'+key
-       # self._mqtt.publish(_topic,item)
-
-       # self._log.debug('Publish message %s to topic: %s' % (item, _topic))
-
-
-
-      #  _topic = self._cfg_broker['PUBLISH'] + '/' + threadId + '/STATE'
-       # self._mqtt.publish(_topic, json.dumps(self._marantecObj[threadId].getGarageDoorState()))
         return True
 
     def callbackBroker(self,client, userdata, message):
@@ -135,17 +113,22 @@ class manager(threading.Thread):
 
     def start_mqtt(self):
         self._log.debug('Methode: start_mqtt()')
-        self._mqtt = mqttadapter(self._rootLoggerName)
-        if self._mqtt.connect(self._cfg_broker['HOST']):
-            _subscribe = (self._cfg_broker['SUBSCRIBE'])+'/#'
-            if self._mqtt.subscribe(_subscribe,self.callbackBroker):
-                return True
-            else:
-                self._log.error('Failed to subscribe')
+        self._mqtt = mqttclient(self._rootLoggerName)
+
+        _list = []
+
+        _subscribe = (self._cfg_broker['SUBSCRIBE'])+'/#'
+        _callback = self.callbackBroker
+
+        _list.append({'SUBSCRIBE': _subscribe, 'CALLBACK': _callback})
+        self._cfg_broker['SUBSCRIPTION'] = _list
+
+        (state, message) = self._mqtt.fullclient(self._cfg_broker)
+        if state:
+            self._log.debug('mqtt completed with message %s',message)
         else:
-            self._log.error('Failed to connect to MQTT')
-      #  time.sleep(5)
-       # self._mqtt.message_callback_add(_subscribe,self.callbackBroker)
+            self._log.error('Failed to connect: %s',message)
+
         return False
 
 

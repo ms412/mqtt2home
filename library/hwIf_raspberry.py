@@ -1,8 +1,8 @@
 
-from library.bitoperation import bitoperation
+#from library.bitoperation import bitoperation
 
-import time
-import random
+#import time
+#import random
 import logging
 import RPi.GPIO as GPIO
 
