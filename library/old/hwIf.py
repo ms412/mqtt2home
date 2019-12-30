@@ -1,11 +1,10 @@
 
 import sys
-import time
 import threading
 import logging
 
-from library.hwIf_raspberry  import raspberry
-from library.hwIf_dummy import dummy
+from library.hw.hwIf_raspberry import raspberry
+from library.hw.hwIf_dummy import dummy
 
 logger = logging.getLogger(__name__)
 

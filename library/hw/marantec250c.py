@@ -1,11 +1,8 @@
-
-
-import sys
 import time
 import threading
 import logging
 
-from library.hwIf_raspberry  import raspberry
+from library.hw.hwIf_raspberry import raspberry
 #from library.hwIf_dummy import raspberry
 
 class marantec250c(threading.Thread):

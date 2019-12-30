@@ -165,7 +165,8 @@ if __name__ == "__main__":
     if len(sys.argv) == 2:
         configfile = sys.argv[1]
     else:
-        configfile = 'C:/Users/markus/PycharmProjects/mqtt@home/garagedoor/marantec2mqtt.cfg'
+        #configfile = 'C:/Users/markus/PycharmProjects/mqtt@home/garagedoor/marantec2mqtt.cfg'
+        configfile = '/home/pi/mqtt@home/garagedoor/marantec2mqtt.cfg'
 
     mgr_handle = manager(configfile)
     mgr_handle.start()

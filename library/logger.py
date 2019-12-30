@@ -41,7 +41,7 @@ class loghandler(object):
         return True
 
     def handle(self,method = 'PRINT',config = None):
-     #   print (methode)
+     #   print (method)
         if 'SYSLOG' in method:
           #  print('Ssyslog',config )
             host = config.get('LOGSERVER','localhost')

@@ -1,0 +1,13 @@
+
+
+[Unit]
+Description=Marantec Garagedoor Service
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/home/pi/mqtt@home/garagedoor/marantec2mqtt.py
+
+[Install]
+WantedBy=multi-user.target
+
