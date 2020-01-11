@@ -47,6 +47,7 @@ class raspberry(object):
         self._log = logging.getLogger(logger + '.'+ _libName + '.' + self.__class__.__name__)
         #define log object
         self._gpio = GPIO
+        self._gpio.cleanup()
        # self._gpio.setmode(GPIO.BCM)
         GPIO.setmode(GPIO.BOARD)
         self._gpio.setwarnings(False)

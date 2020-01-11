@@ -27,6 +27,7 @@ import time
 import json
 import logging
 import threading
+import gc
 
 from configobj import ConfigObj
 from library.hwadapter import marantec250c
@@ -34,16 +35,19 @@ from library.mqttclient import mqttclient
 from library.logger import loghandler
 #from library.S0Manager import S0manager
 
-class manager(threading.Thread):
+#class manager(threading.Thread):
+class manager(object):
 
     def __init__(self,cfg_file='marantec2mqtt.cfg'):
-        threading.Thread.__init__(self)
+    #    threading.Thread.__init__(self)
 
         self._cfg_file = cfg_file
 
         self._cfg_broker = None
         self._cfg_log = None
         self._cfg_gpio = None
+
+        self._watchdogTimer = time.time()
 
         self._rootLoggerName = ''
 
@@ -98,6 +102,11 @@ class manager(threading.Thread):
 
         return True
 
+    def callbackWatchog(self, client, userdata, message):
+        self._log.debug('Methode: callbackWatchdog called with client: %s userdata: %s message: %s Topic: %s' % (client, userdata, message.payload, message.topic))
+
+        self._watchdogTimer = time.time()
+
     def start_marantec(self):
         self._log.debug('Methode: start_marantec()')
         self._marantecObj = {}
@@ -117,6 +126,11 @@ class manager(threading.Thread):
 
         _list = []
 
+     #   _subscribe = (self._cfg_broker['PUBLISH']) + '/#'
+      #  _callback = self.callbackWatchog
+
+       # _list.append({'SUBSCRIBE': _subscribe, 'CALLBACK': _callback})
+
         _subscribe = (self._cfg_broker['SUBSCRIBE'])+'/#'
         _callback = self.callbackBroker
 
@@ -131,6 +145,21 @@ class manager(threading.Thread):
 
         return False
 
+    def start_watchdog(self):
+        self._log.debug('Methode: start_mqttWatchdog()')
+        _topic = (self._cfg_broker['PUBLISH']) + '/#'
+        _callback = self.callbackWatchog
+        if self._mqtt.subscribe(_topic):
+            if _callback is not None:
+                self._mqtt.callback(_topic, _callback)
+        else:
+            self._log.error('Failed to setup Watchdog')
+            return False
+
+        self._watchdogTimer = time.time()
+        return True
+
+
 
 
     def run(self):
@@ -143,8 +172,10 @@ class manager(threading.Thread):
 
         self._log.info('Startup, %s %s %s'% ( __app__, __VERSION__, __DATE__) )
         self.start_mqtt()
+        self.start_watchdog()
         time.sleep(2)
         self.start_marantec()
+
         _timeout = time.time()+30
         while True:
             time.sleep(10)
@@ -158,6 +189,9 @@ class manager(threading.Thread):
 
                 _timeout = time.time() + 30
 
+            if time.time() > (self._watchdogTimer + 120):
+                self._log.error('Watchdog timed out... restart system')
+                break
 
 
 if __name__ == "__main__":
@@ -168,5 +202,8 @@ if __name__ == "__main__":
         #configfile = 'C:/Users/markus/PycharmProjects/mqtt@home/garagedoor/marantec2mqtt.cfg'
         configfile = '/home/pi/mqtt@home/garagedoor/marantec2mqtt.cfg'
 
-    mgr_handle = manager(configfile)
-    mgr_handle.start()
+    while True:
+        mgr_handle = manager(configfile)
+        mgr_handle.run()
+        del mgr_handle
+
