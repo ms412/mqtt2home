@@ -4,6 +4,7 @@
 #import time
 #import random
 import logging
+from threading import Thread
 import RPi.GPIO as GPIO
 
 from threading import Thread
@@ -91,3 +92,10 @@ class raspberry(object):
         return True
 
 
+class raspberry(Thread):
+
+    def __init__(self,gpio,logger):
+        Thread.__init__(self)
+
+        _libName = str(__name__.rsplit('.',1)[-1])
+        self._log = logging.getLogger(logger + '.'+ _libName + '.' + self.__class__.__name__)

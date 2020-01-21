@@ -191,7 +191,7 @@ class manager(object):
 
             if time.time() > (self._watchdogTimer + 120):
                 self._log.error('Watchdog timed out... restart system')
-                break
+                sys.exit('kill my self')
 
 
 if __name__ == "__main__":
@@ -202,8 +202,8 @@ if __name__ == "__main__":
         #configfile = 'C:/Users/markus/PycharmProjects/mqtt@home/garagedoor/marantec2mqtt.cfg'
         configfile = '/home/pi/mqtt@home/garagedoor/marantec2mqtt.cfg'
 
-    while True:
-        mgr_handle = manager(configfile)
-        mgr_handle.run()
-        del mgr_handle
+#    while True:
+    mgr_handle = manager(configfile)
+    mgr_handle.run()
+        #:del mgr_handle
 

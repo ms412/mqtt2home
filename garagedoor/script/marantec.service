@@ -7,6 +7,9 @@ After=multi-user.target
 [Service]
 Type=idle
 ExecStart=/home/pi/mqtt@home/garagedoor/marantec2mqtt.py
+Restart=on-failure
+RestartSec=5s
+
 
 [Install]
 WantedBy=multi-user.target
