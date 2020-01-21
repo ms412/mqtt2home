@@ -1,0 +1,1528 @@
+EESchema Schematic File Version 4
+LIBS:Marantec-cache
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date "15 nov 2012"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L power:+5V #PWR01
+U 1 1 580C1B61
+P 3100 950
+F 0 "#PWR01" H 3100 800 50  0001 C CNN
+F 1 "+5V" H 3100 1090 50  0000 C CNN
+F 2 "" H 3100 950 50  0000 C CNN
+F 3 "" H 3100 950 50  0000 C CNN
+	1    3100 950 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3100 950  3100 1100
+Wire Wire Line
+	3100 1100 2900 1100
+Wire Wire Line
+	3100 1200 2900 1200
+Connection ~ 3100 1100
+$Comp
+L power:GND #PWR02
+U 1 1 580C1D11
+P 3000 3150
+F 0 "#PWR02" H 3000 2900 50  0001 C CNN
+F 1 "GND" H 3000 3000 50  0000 C CNN
+F 2 "" H 3000 3150 50  0000 C CNN
+F 3 "" H 3000 3150 50  0000 C CNN
+	1    3000 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3000 1300 3000 1700
+Wire Wire Line
+	3000 2700 2900 2700
+Wire Wire Line
+	3000 2500 2900 2500
+Connection ~ 3000 2700
+Wire Wire Line
+	3000 2000 2900 2000
+Connection ~ 3000 2500
+Wire Wire Line
+	3000 1700 2900 1700
+Connection ~ 3000 2000
+$Comp
+L power:GND #PWR03
+U 1 1 580C1E01
+P 2300 3150
+F 0 "#PWR03" H 2300 2900 50  0001 C CNN
+F 1 "GND" H 2300 3000 50  0000 C CNN
+F 2 "" H 2300 3150 50  0000 C CNN
+F 3 "" H 2300 3150 50  0000 C CNN
+	1    2300 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2300 3000 2400 3000
+Wire Wire Line
+	2300 1500 2300 2300
+Wire Wire Line
+	2300 2300 2400 2300
+Connection ~ 2300 3000
+Connection ~ 2200 1100
+Wire Wire Line
+	2200 1900 2400 1900
+Wire Wire Line
+	2200 1100 2400 1100
+Wire Wire Line
+	2200 950  2200 1100
+$Comp
+L power:+3.3V #PWR04
+U 1 1 580C1BC1
+P 2200 950
+F 0 "#PWR04" H 2200 800 50  0001 C CNN
+F 1 "+3.3V" H 2200 1090 50  0000 C CNN
+F 2 "" H 2200 950 50  0000 C CNN
+F 3 "" H 2200 950 50  0000 C CNN
+	1    2200 950 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2300 1500 2400 1500
+Connection ~ 2300 2300
+Wire Wire Line
+	2400 1200 1250 1200
+Wire Wire Line
+	1250 1300 2400 1300
+Wire Wire Line
+	1250 1400 2400 1400
+Wire Wire Line
+	2400 1600 1250 1600
+Wire Wire Line
+	1250 1700 2400 1700
+Wire Wire Line
+	1250 1800 2400 1800
+Wire Wire Line
+	2400 2000 1250 2000
+Wire Wire Line
+	1250 2100 2400 2100
+Wire Wire Line
+	1250 2200 2400 2200
+Wire Wire Line
+	2400 2400 1250 2400
+Wire Wire Line
+	1250 2500 2400 2500
+Wire Wire Line
+	1250 2600 2400 2600
+Wire Wire Line
+	2400 2700 1250 2700
+Wire Wire Line
+	1250 2800 2400 2800
+Wire Wire Line
+	1250 2900 2400 2900
+Wire Wire Line
+	2900 2800 3950 2800
+Wire Wire Line
+	2900 2900 3950 2900
+Wire Wire Line
+	2900 2300 3950 2300
+Wire Wire Line
+	2900 2400 3950 2400
+Wire Wire Line
+	2900 2100 3950 2100
+Wire Wire Line
+	2900 2200 3950 2200
+Wire Wire Line
+	2900 1800 3950 1800
+Wire Wire Line
+	2900 1900 3950 1900
+Wire Wire Line
+	2900 1500 3950 1500
+Wire Wire Line
+	2900 1600 3950 1600
+Wire Wire Line
+	2900 1400 3950 1400
+Wire Wire Line
+	2900 2600 3950 2600
+Text Label 1250 1200 0    50   ~ 0
+GPIO_02(Door1_Close_Inp)
+Text Label 1250 1300 0    50   ~ 0
+GPIO_03(Door1_Open_Inp)
+Text Label 1250 1400 0    50   ~ 0
+GPIO_04(Door1_Light_Inp)
+Text Label 1250 1600 0    50   ~ 0
+GPIO17(GEN0)
+Text Label 1250 1700 0    50   ~ 0
+GPIO27(GEN2)
+Text Label 1250 1800 0    50   ~ 0
+GPIO22(GEN3)
+Text Label 1250 2000 0    50   ~ 0
+GPIO_10(Door2_Open_Out)
+Text Label 1250 2100 0    50   ~ 0
+GPIO_09(Door1_Close_Out)
+Text Label 1250 2200 0    50   ~ 0
+GPIO_11(Door2_Light_Out)
+Text Label 1250 2400 0    50   ~ 0
+ID_SD
+Text Label 1250 2500 0    50   ~ 0
+GPIO_05(Door1_Lock_Inp)
+Text Label 1250 2600 0    50   ~ 0
+GPIO_06(Door1_Close_Out)
+Text Label 1250 2700 0    50   ~ 0
+GPIO13(PWM1)
+Text Label 1250 2800 0    50   ~ 0
+GPIO19(SPI1_MISO)
+Text Label 1250 2900 0    50   ~ 0
+GPIO26
+Text Label 3950 2900 2    50   ~ 0
+GPIO20(SPI1_MOSI)
+Text Label 3950 2800 2    50   ~ 0
+GPIO16
+Text Label 3950 2600 2    50   ~ 0
+GPIO12(PWM0)
+Text Label 3950 2400 2    50   ~ 0
+ID_SC
+Text Label 3950 2300 2    50   ~ 0
+GPIO_07(Door1_Open_Out)
+Text Label 3950 2200 2    50   ~ 0
+GPIO_08(Door1_Light_Out)
+Text Label 3950 2100 2    50   ~ 0
+GPIO25(GEN6)
+Text Label 3950 1900 2    50   ~ 0
+GPIO24(GEN5)
+Text Label 3950 1800 2    50   ~ 0
+GPIO23(GEN4)
+Text Label 3950 1600 2    50   ~ 0
+GPIO18(GEN1)(PWM0)
+Text Label 3950 1500 2    50   ~ 0
+GPIO15(RXD0)
+Text Label 3950 1400 2    50   ~ 0
+GPIO14(TXD0)
+Wire Wire Line
+	3000 1300 2900 1300
+Connection ~ 3000 1700
+$Comp
+L Marantec-rescue:Mounting_Hole-Mechanical MK1
+U 1 1 5834FB2E
+P 600 7400
+F 0 "MK1" H 700 7446 50  0000 L CNN
+F 1 "M2.5" H 700 7355 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5" H 600 7400 60  0001 C CNN
+F 3 "" H 600 7400 60  0001 C CNN
+	1    600  7400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Marantec-rescue:Mounting_Hole-Mechanical MK3
+U 1 1 5834FBEF
+P 1050 7400
+F 0 "MK3" H 1150 7446 50  0000 L CNN
+F 1 "M2.5" H 1150 7355 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5" H 1050 7400 60  0001 C CNN
+F 3 "" H 1050 7400 60  0001 C CNN
+	1    1050 7400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Marantec-rescue:Mounting_Hole-Mechanical MK2
+U 1 1 5834FC19
+P 600 7600
+F 0 "MK2" H 700 7646 50  0000 L CNN
+F 1 "M2.5" H 700 7555 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5" H 600 7600 60  0001 C CNN
+F 3 "" H 600 7600 60  0001 C CNN
+	1    600  7600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Marantec-rescue:Mounting_Hole-Mechanical MK4
+U 1 1 5834FC4F
+P 1050 7600
+F 0 "MK4" H 1150 7646 50  0000 L CNN
+F 1 "M2.5" H 1150 7555 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5" H 1050 7600 60  0001 C CNN
+F 3 "" H 1050 7600 60  0001 C CNN
+	1    1050 7600
+	1    0    0    -1  
+$EndComp
+Text Notes 600  7250 0    50   ~ 0
+Mounting Holes
+$Comp
+L Connector_Generic:Conn_02x20_Odd_Even P1
+U 1 1 59AD464A
+P 2600 2000
+F 0 "P1" H 2650 3117 50  0000 C CNN
+F 1 "Conn_02x20_Odd_Even" H 2650 3026 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_2x20_P2.54mm_Vertical" H -2250 1050 50  0001 C CNN
+F 3 "" H -2250 1050 50  0001 C CNN
+	1    2600 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2900 3000 3950 3000
+Text Label 3950 3000 2    50   ~ 0
+GPIO21(SPI1_SCK)
+Wire Wire Line
+	3100 1100 3100 1200
+Wire Wire Line
+	3000 2700 3000 3150
+Wire Wire Line
+	3000 2500 3000 2700
+Wire Wire Line
+	3000 2000 3000 2500
+Wire Wire Line
+	2300 3000 2300 3150
+Wire Wire Line
+	2200 1100 2200 1900
+Wire Wire Line
+	2300 2300 2300 3000
+Wire Wire Line
+	3000 1700 3000 2000
+$Comp
+L Connector:RJ12 J1
+U 1 1 5E258BE6
+P 1650 3900
+F 0 "J1" H 1707 4467 50  0000 C CNN
+F 1 "RJ12" H 1707 4376 50  0000 C CNN
+F 2 "Connector_RJ:RJ12_Amphenol_54601" V 1650 3925 50  0001 C CNN
+F 3 "~" V 1650 3925 50  0001 C CNN
+	1    1650 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:RJ12 J2
+U 1 1 5E259677
+P 1650 4650
+F 0 "J2" H 1707 5217 50  0000 C CNN
+F 1 "RJ12" H 1707 5126 50  0000 C CNN
+F 2 "Connector_RJ:RJ12_Amphenol_54601" V 1650 4675 50  0001 C CNN
+F 3 "~" V 1650 4675 50  0001 C CNN
+	1    1650 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Regulator_Linear:L7805 U?
+U 1 1 5E272DD0
+P 5750 7050
+F 0 "U?" H 5750 7292 50  0000 C CNN
+F 1 "L7805" H 5750 7201 50  0000 C CNN
+F 2 "" H 5775 6900 50  0001 L CIN
+F 3 "http://www.st.com/content/ccc/resource/technical/document/datasheet/41/4f/b3/b0/12/d4/47/88/CD00000444.pdf/files/CD00000444.pdf/jcr:content/translations/en.CD00000444.pdf" H 5750 7000 50  0001 C CNN
+	1    5750 7050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP C?
+U 1 1 5E273FB6
+P 5350 7200
+F 0 "C?" H 5468 7246 50  0000 L CNN
+F 1 "CP" H 5468 7155 50  0000 L CNN
+F 2 "" H 5388 7050 50  0001 C CNN
+F 3 "~" H 5350 7200 50  0001 C CNN
+	1    5350 7200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP C?
+U 1 1 5E274B03
+P 6150 7200
+F 0 "C?" H 6268 7246 50  0000 L CNN
+F 1 "CP" H 6268 7155 50  0000 L CNN
+F 2 "" H 6188 7050 50  0001 C CNN
+F 3 "~" H 6150 7200 50  0001 C CNN
+	1    6150 7200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 7050 5450 7050
+Wire Wire Line
+	6050 7050 6150 7050
+$Comp
+L power:GND #PWR?
+U 1 1 5E27961D
+P 5750 7450
+F 0 "#PWR?" H 5750 7200 50  0001 C CNN
+F 1 "GND" H 5750 7300 50  0000 C CNN
+F 2 "" H 5750 7450 50  0000 C CNN
+F 3 "" H 5750 7450 50  0000 C CNN
+	1    5750 7450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 7350 5750 7350
+Wire Wire Line
+	6150 7350 5750 7350
+Connection ~ 5750 7350
+Wire Wire Line
+	5750 7350 5750 7450
+$Comp
+L power:+5V #PWR?
+U 1 1 5E27F742
+P 6150 6950
+F 0 "#PWR?" H 6150 6800 50  0001 C CNN
+F 1 "+5V" H 6150 7090 50  0000 C CNN
+F 2 "" H 6150 6950 50  0000 C CNN
+F 3 "" H 6150 6950 50  0000 C CNN
+	1    6150 6950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6150 7050 6150 6950
+Connection ~ 6150 7050
+Wire Wire Line
+	2050 3900 2250 3900
+Wire Wire Line
+	2250 3900 2250 4650
+Wire Wire Line
+	2250 4650 2050 4650
+$Comp
+L power:GND #PWR?
+U 1 1 5E2FF705
+P 2250 6200
+F 0 "#PWR?" H 2250 5950 50  0001 C CNN
+F 1 "GND" H 2250 6050 50  0000 C CNN
+F 2 "" H 2250 6200 50  0000 C CNN
+F 3 "" H 2250 6200 50  0000 C CNN
+	1    2250 6200
+	1    0    0    -1  
+$EndComp
+Connection ~ 2250 4650
+$Comp
+L Device:D D?
+U 1 1 5E3047DA
+P 5050 6950
+F 0 "D?" H 5050 6734 50  0000 C CNN
+F 1 "D" H 5050 6825 50  0000 C CNN
+F 2 "" H 5050 6950 50  0001 C CNN
+F 3 "~" H 5050 6950 50  0001 C CNN
+	1    5050 6950
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:D D?
+U 1 1 5E305C8E
+P 5050 7150
+F 0 "D?" H 5050 6934 50  0000 C CNN
+F 1 "D" H 5050 7025 50  0000 C CNN
+F 2 "" H 5050 7150 50  0001 C CNN
+F 3 "~" H 5050 7150 50  0001 C CNN
+	1    5050 7150
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5200 7150 5200 7050
+Wire Wire Line
+	5200 7050 5350 7050
+Connection ~ 5200 7050
+Connection ~ 5350 7050
+Wire Wire Line
+	5200 6950 5200 7050
+Text Label 2550 4000 0    50   ~ 0
+Door1_VCC(24V)
+Wire Wire Line
+	2050 4000 2550 4000
+Text Label 4350 6950 0    50   ~ 0
+Door1_VCC(24V)
+Wire Wire Line
+	4900 6950 4350 6950
+Text Label 4350 7150 0    50   ~ 0
+Door2_VCC(24V)
+Wire Wire Line
+	4900 7150 4350 7150
+Text Label 2550 4750 0    50   ~ 0
+Door2_VCC(24V)
+Wire Wire Line
+	2050 4750 2550 4750
+Text Label 2550 3600 0    50   ~ 0
+Door1_Close
+Wire Wire Line
+	2050 3600 2550 3600
+Text Label 2550 3800 0    50   ~ 0
+Door1_Open
+Wire Wire Line
+	2050 3800 2550 3800
+Text Label 2550 4100 0    50   ~ 0
+Door1_Light
+Wire Wire Line
+	2050 4100 2550 4100
+Text Label 2550 3700 0    50   ~ 0
+Door1_Lock
+Wire Wire Line
+	2050 3700 2550 3700
+$Comp
+L power:GND #PWR?
+U 1 1 5E4CD066
+P 5450 1750
+F 0 "#PWR?" H 5450 1500 50  0001 C CNN
+F 1 "GND" H 5450 1600 50  0000 C CNN
+F 2 "" H 5450 1750 50  0000 C CNN
+F 3 "" H 5450 1750 50  0000 C CNN
+	1    5450 1750
+	1    0    0    -1  
+$EndComp
+Text Label 6550 1300 0    50   ~ 0
+GPIO_02(Door1_Close_Inp)
+Wire Wire Line
+	6450 1300 6550 1300
+Wire Wire Line
+	6050 1000 6050 950 
+Wire Wire Line
+	6050 1300 6150 1300
+Connection ~ 6050 1300
+Wire Wire Line
+	5950 1300 6050 1300
+Wire Wire Line
+	5050 1300 4550 1300
+Text Label 4550 1300 0    50   ~ 0
+Door1_Close
+Wire Wire Line
+	5450 1300 5650 1300
+$Comp
+L Device:D_Zener D?
+U 1 1 5E4CD093
+P 5450 1500
+F 0 "D?" V 5404 1579 50  0000 L CNN
+F 1 "Z6" V 5495 1579 50  0000 L CNN
+F 2 "" H 5450 1500 50  0001 C CNN
+F 3 "~" H 5450 1500 50  0001 C CNN
+	1    5450 1500
+	0    1    1    0   
+$EndComp
+Connection ~ 5450 1300
+Wire Wire Line
+	5450 1350 5450 1300
+Wire Wire Line
+	5350 1300 5450 1300
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E4CD05C
+P 6050 950
+F 0 "#PWR?" H 6050 800 50  0001 C CNN
+F 1 "+3.3V" H 6050 1090 50  0000 C CNN
+F 2 "" H 6050 950 50  0000 C CNN
+F 3 "" H 6050 950 50  0000 C CNN
+	1    6050 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E4CD052
+P 6300 1300
+F 0 "R?" V 6093 1300 50  0000 C CNN
+F 1 "330" V 6184 1300 50  0000 C CNN
+F 2 "" V 6230 1300 50  0001 C CNN
+F 3 "~" H 6300 1300 50  0001 C CNN
+	1    6300 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D?
+U 1 1 5E4CD048
+P 6050 1150
+F 0 "D?" V 6004 1229 50  0000 L CNN
+F 1 "D" V 6095 1229 50  0000 L CNN
+F 2 "" H 6050 1150 50  0001 C CNN
+F 3 "~" H 6050 1150 50  0001 C CNN
+	1    6050 1150
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E4CD03E
+P 5800 1300
+F 0 "R?" V 5593 1300 50  0000 C CNN
+F 1 "4.7k" V 5684 1300 50  0000 C CNN
+F 2 "" V 5730 1300 50  0001 C CNN
+F 3 "~" H 5800 1300 50  0001 C CNN
+	1    5800 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E4CD034
+P 5200 1300
+F 0 "R?" V 4993 1300 50  0000 C CNN
+F 1 "4.7k" V 5084 1300 50  0000 C CNN
+F 2 "" V 5130 1300 50  0001 C CNN
+F 3 "~" H 5200 1300 50  0001 C CNN
+	1    5200 1300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5450 1650 5450 1750
+Text Label 5300 5400 0    50   ~ 0
+GPIO_06(Door1_Close_Out)
+Text Label 5300 5500 0    50   ~ 0
+GPIO_07(Door1_Open_Out)
+$Comp
+L Transistor_Array:ULN2803A U?
+U 1 1 5E55D22B
+P 4800 5600
+F 0 "U?" H 4800 6167 50  0000 C CNN
+F 1 "ULN2803A" H 4800 6076 50  0000 C CNN
+F 2 "" H 4850 4950 50  0001 L CNN
+F 3 "http://www.ti.com/lit/ds/symlink/uln2803a.pdf" H 4900 5400 50  0001 C CNN
+	1    4800 5600
+	-1   0    0    -1  
+$EndComp
+Text Label 3800 5500 0    50   ~ 0
+Door1_Open
+Text Label 3800 5400 0    50   ~ 0
+Door1_Close
+$Comp
+L power:GND #PWR?
+U 1 1 5E579CF1
+P 4800 6400
+F 0 "#PWR?" H 4800 6150 50  0001 C CNN
+F 1 "GND" H 4800 6250 50  0000 C CNN
+F 2 "" H 4800 6400 50  0000 C CNN
+F 3 "" H 4800 6400 50  0000 C CNN
+	1    4800 6400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 6400 4800 6300
+Text Label 3800 5600 0    50   ~ 0
+Light_Common
+$Comp
+L power:GND #PWR?
+U 1 1 5E586859
+P 5450 3450
+F 0 "#PWR?" H 5450 3200 50  0001 C CNN
+F 1 "GND" H 5450 3300 50  0000 C CNN
+F 2 "" H 5450 3450 50  0000 C CNN
+F 3 "" H 5450 3450 50  0000 C CNN
+	1    5450 3450
+	1    0    0    -1  
+$EndComp
+Text Label 6550 3000 0    50   ~ 0
+GPIO_04(Door1_Light_Inp)
+Wire Wire Line
+	6450 3000 6550 3000
+Wire Wire Line
+	6050 2700 6050 2650
+Wire Wire Line
+	6050 3000 6150 3000
+Connection ~ 6050 3000
+Wire Wire Line
+	5950 3000 6050 3000
+Wire Wire Line
+	5050 3000 4550 3000
+Text Label 4550 3000 0    50   ~ 0
+Light_Common
+Wire Wire Line
+	5450 3000 5650 3000
+$Comp
+L Device:D_Zener D?
+U 1 1 5E58686C
+P 5450 3200
+F 0 "D?" V 5404 3279 50  0000 L CNN
+F 1 "Z6" V 5495 3279 50  0000 L CNN
+F 2 "" H 5450 3200 50  0001 C CNN
+F 3 "~" H 5450 3200 50  0001 C CNN
+	1    5450 3200
+	0    1    1    0   
+$EndComp
+Connection ~ 5450 3000
+Wire Wire Line
+	5450 3050 5450 3000
+Wire Wire Line
+	5350 3000 5450 3000
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E586879
+P 6050 2650
+F 0 "#PWR?" H 6050 2500 50  0001 C CNN
+F 1 "+3.3V" H 6050 2790 50  0000 C CNN
+F 2 "" H 6050 2650 50  0000 C CNN
+F 3 "" H 6050 2650 50  0000 C CNN
+	1    6050 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E586883
+P 6300 3000
+F 0 "R?" V 6093 3000 50  0000 C CNN
+F 1 "330" V 6184 3000 50  0000 C CNN
+F 2 "" V 6230 3000 50  0001 C CNN
+F 3 "~" H 6300 3000 50  0001 C CNN
+	1    6300 3000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D?
+U 1 1 5E58688D
+P 6050 2850
+F 0 "D?" V 6004 2929 50  0000 L CNN
+F 1 "D" V 6095 2929 50  0000 L CNN
+F 2 "" H 6050 2850 50  0001 C CNN
+F 3 "~" H 6050 2850 50  0001 C CNN
+	1    6050 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E586897
+P 5800 3000
+F 0 "R?" V 5593 3000 50  0000 C CNN
+F 1 "4.7k" V 5684 3000 50  0000 C CNN
+F 2 "" V 5730 3000 50  0001 C CNN
+F 3 "~" H 5800 3000 50  0001 C CNN
+	1    5800 3000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E5868A1
+P 5200 3000
+F 0 "R?" V 4993 3000 50  0000 C CNN
+F 1 "4.7k" V 5084 3000 50  0000 C CNN
+F 2 "" V 5130 3000 50  0001 C CNN
+F 3 "~" H 5200 3000 50  0001 C CNN
+	1    5200 3000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5450 3350 5450 3450
+$Comp
+L power:GND #PWR?
+U 1 1 5E59145E
+P 5450 4300
+F 0 "#PWR?" H 5450 4050 50  0001 C CNN
+F 1 "GND" H 5450 4150 50  0000 C CNN
+F 2 "" H 5450 4300 50  0000 C CNN
+F 3 "" H 5450 4300 50  0000 C CNN
+	1    5450 4300
+	1    0    0    -1  
+$EndComp
+Text Label 6550 3850 0    50   ~ 0
+GPIO_05(Door1_Lock_Inp)
+Wire Wire Line
+	6450 3850 6550 3850
+Wire Wire Line
+	6050 3550 6050 3500
+Wire Wire Line
+	6050 3850 6150 3850
+Connection ~ 6050 3850
+Wire Wire Line
+	5950 3850 6050 3850
+Wire Wire Line
+	5050 3850 4550 3850
+Text Label 4550 3850 0    50   ~ 0
+Door1_Lock
+Wire Wire Line
+	5450 3850 5650 3850
+$Comp
+L Device:D_Zener D?
+U 1 1 5E591471
+P 5450 4050
+F 0 "D?" V 5404 4129 50  0000 L CNN
+F 1 "Z6" V 5495 4129 50  0000 L CNN
+F 2 "" H 5450 4050 50  0001 C CNN
+F 3 "~" H 5450 4050 50  0001 C CNN
+	1    5450 4050
+	0    1    1    0   
+$EndComp
+Connection ~ 5450 3850
+Wire Wire Line
+	5450 3900 5450 3850
+Wire Wire Line
+	5350 3850 5450 3850
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E59147E
+P 6050 3500
+F 0 "#PWR?" H 6050 3350 50  0001 C CNN
+F 1 "+3.3V" H 6050 3640 50  0000 C CNN
+F 2 "" H 6050 3500 50  0000 C CNN
+F 3 "" H 6050 3500 50  0000 C CNN
+	1    6050 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E591488
+P 6300 3850
+F 0 "R?" V 6093 3850 50  0000 C CNN
+F 1 "330" V 6184 3850 50  0000 C CNN
+F 2 "" V 6230 3850 50  0001 C CNN
+F 3 "~" H 6300 3850 50  0001 C CNN
+	1    6300 3850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D?
+U 1 1 5E591492
+P 6050 3700
+F 0 "D?" V 6004 3779 50  0000 L CNN
+F 1 "D" V 6095 3779 50  0000 L CNN
+F 2 "" H 6050 3700 50  0001 C CNN
+F 3 "~" H 6050 3700 50  0001 C CNN
+	1    6050 3700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E59149C
+P 5800 3850
+F 0 "R?" V 5593 3850 50  0000 C CNN
+F 1 "4.7k" V 5684 3850 50  0000 C CNN
+F 2 "" V 5730 3850 50  0001 C CNN
+F 3 "~" H 5800 3850 50  0001 C CNN
+	1    5800 3850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E5914A6
+P 5200 3850
+F 0 "R?" V 4993 3850 50  0000 C CNN
+F 1 "4.7k" V 5084 3850 50  0000 C CNN
+F 2 "" V 5130 3850 50  0001 C CNN
+F 3 "~" H 5200 3850 50  0001 C CNN
+	1    5200 3850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5450 4200 5450 4300
+Text Label 5300 5600 0    50   ~ 0
+GPIO_08(Door1_Light_Out)
+Text Label 5300 5800 0    50   ~ 0
+GPIO_09(Door1_Close_Out)
+Text Label 5300 5900 0    50   ~ 0
+GPIO_10(Door2_Open_Out)
+Text Label 5300 6000 0    50   ~ 0
+GPIO_11(Door2_Light_Out)
+Wire Wire Line
+	5300 5400 5200 5400
+Wire Wire Line
+	5300 5500 5200 5500
+Wire Wire Line
+	5300 5600 5200 5600
+Wire Wire Line
+	5300 5800 5200 5800
+Wire Wire Line
+	5300 5900 5200 5900
+Wire Wire Line
+	5300 6000 5200 6000
+Wire Wire Line
+	4400 5400 3800 5400
+Wire Wire Line
+	4400 5500 3800 5500
+Wire Wire Line
+	4400 5600 3800 5600
+Text Label 3800 6000 0    50   ~ 0
+Light_Common
+Wire Wire Line
+	4400 6000 3800 6000
+Text Label 3800 5800 0    50   ~ 0
+Door2_Close
+Text Label 3800 5900 0    50   ~ 0
+Door2_Open
+Wire Wire Line
+	4400 5800 3800 5800
+Wire Wire Line
+	4400 5900 3800 5900
+$Comp
+L power:+24V #PWR?
+U 1 1 5E64BECD
+P 5350 6950
+F 0 "#PWR?" H 5350 6800 50  0001 C CNN
+F 1 "+24V" H 5365 7123 50  0000 C CNN
+F 2 "" H 5350 6950 50  0001 C CNN
+F 3 "" H 5350 6950 50  0001 C CNN
+	1    5350 6950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 7050 5350 6950
+$Comp
+L power:+24V #PWR?
+U 1 1 5E6522D6
+P 4300 5200
+F 0 "#PWR?" H 4300 5050 50  0001 C CNN
+F 1 "+24V" H 4315 5373 50  0000 C CNN
+F 2 "" H 4300 5200 50  0001 C CNN
+F 3 "" H 4300 5200 50  0001 C CNN
+	1    4300 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4400 5300 4300 5300
+Wire Wire Line
+	4300 5300 4300 5200
+Text Label 2550 4350 0    50   ~ 0
+Door2_Close
+Text Label 2550 4450 0    50   ~ 0
+Door2_Lock
+Text Label 2550 4550 0    50   ~ 0
+Door2_Open
+Text Label 2550 4850 0    50   ~ 0
+Door2_Light
+Wire Wire Line
+	2050 4350 2550 4350
+Wire Wire Line
+	2050 4450 2550 4450
+Wire Wire Line
+	2050 4550 2550 4550
+Wire Wire Line
+	2050 4850 2550 4850
+$Comp
+L Connector:RJ45 J?
+U 1 1 5E67CD45
+P 1650 5800
+F 0 "J?" H 1707 6467 50  0000 C CNN
+F 1 "RJ45" H 1707 6376 50  0000 C CNN
+F 2 "" V 1650 5825 50  0001 C CNN
+F 3 "~" V 1650 5825 50  0001 C CNN
+	1    1650 5800
+	1    0    0    -1  
+$EndComp
+Text Label 2550 5400 0    50   ~ 0
+Door1_Close
+Text Label 2550 5500 0    50   ~ 0
+Door1_Open
+Text Label 2550 5600 0    50   ~ 0
+Door1_Lock
+Text Label 2550 5700 0    50   ~ 0
+Light_Common
+Text Label 2550 5800 0    50   ~ 0
+Door2_Close
+Text Label 2550 5900 0    50   ~ 0
+Door2_Open
+Text Label 2550 6000 0    50   ~ 0
+Door2_Lock
+Wire Wire Line
+	2050 5400 2550 5400
+Wire Wire Line
+	2050 5500 2550 5500
+Wire Wire Line
+	2050 5600 2550 5600
+Wire Wire Line
+	2050 5700 2550 5700
+Wire Wire Line
+	2050 5800 2550 5800
+Wire Wire Line
+	2050 5900 2550 5900
+Wire Wire Line
+	2050 6000 2550 6000
+Wire Wire Line
+	2250 6100 2050 6100
+Wire Wire Line
+	2250 4650 2250 6100
+Wire Wire Line
+	2250 6200 2250 6100
+Connection ~ 2250 6100
+$Comp
+L power:GND #PWR?
+U 1 1 5E72CB2E
+P 5450 2600
+F 0 "#PWR?" H 5450 2350 50  0001 C CNN
+F 1 "GND" H 5450 2450 50  0000 C CNN
+F 2 "" H 5450 2600 50  0000 C CNN
+F 3 "" H 5450 2600 50  0000 C CNN
+	1    5450 2600
+	1    0    0    -1  
+$EndComp
+Text Label 6550 2150 0    50   ~ 0
+GPIO_03(Door1_Open_Inp)
+Wire Wire Line
+	6450 2150 6550 2150
+Wire Wire Line
+	6050 1850 6050 1800
+Wire Wire Line
+	6050 2150 6150 2150
+Connection ~ 6050 2150
+Wire Wire Line
+	5950 2150 6050 2150
+Wire Wire Line
+	5050 2150 4550 2150
+Text Label 4550 2150 0    50   ~ 0
+Door1_Open
+Wire Wire Line
+	5450 2150 5650 2150
+$Comp
+L Device:D_Zener D?
+U 1 1 5E72CB41
+P 5450 2350
+F 0 "D?" V 5404 2429 50  0000 L CNN
+F 1 "Z6" V 5495 2429 50  0000 L CNN
+F 2 "" H 5450 2350 50  0001 C CNN
+F 3 "~" H 5450 2350 50  0001 C CNN
+	1    5450 2350
+	0    1    1    0   
+$EndComp
+Connection ~ 5450 2150
+Wire Wire Line
+	5450 2200 5450 2150
+Wire Wire Line
+	5350 2150 5450 2150
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E72CB4E
+P 6050 1800
+F 0 "#PWR?" H 6050 1650 50  0001 C CNN
+F 1 "+3.3V" H 6050 1940 50  0000 C CNN
+F 2 "" H 6050 1800 50  0000 C CNN
+F 3 "" H 6050 1800 50  0000 C CNN
+	1    6050 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E72CB58
+P 6300 2150
+F 0 "R?" V 6093 2150 50  0000 C CNN
+F 1 "330" V 6184 2150 50  0000 C CNN
+F 2 "" V 6230 2150 50  0001 C CNN
+F 3 "~" H 6300 2150 50  0001 C CNN
+	1    6300 2150
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D?
+U 1 1 5E72CB62
+P 6050 2000
+F 0 "D?" V 6004 2079 50  0000 L CNN
+F 1 "D" V 6095 2079 50  0000 L CNN
+F 2 "" H 6050 2000 50  0001 C CNN
+F 3 "~" H 6050 2000 50  0001 C CNN
+	1    6050 2000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E72CB6C
+P 5800 2150
+F 0 "R?" V 5593 2150 50  0000 C CNN
+F 1 "4.7k" V 5684 2150 50  0000 C CNN
+F 2 "" V 5730 2150 50  0001 C CNN
+F 3 "~" H 5800 2150 50  0001 C CNN
+	1    5800 2150
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E72CB76
+P 5200 2150
+F 0 "R?" V 4993 2150 50  0000 C CNN
+F 1 "4.7k" V 5084 2150 50  0000 C CNN
+F 2 "" V 5130 2150 50  0001 C CNN
+F 3 "~" H 5200 2150 50  0001 C CNN
+	1    5200 2150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5450 2500 5450 2600
+$Comp
+L power:GND #PWR?
+U 1 1 5E8658C9
+P 8750 1750
+F 0 "#PWR?" H 8750 1500 50  0001 C CNN
+F 1 "GND" H 8750 1600 50  0000 C CNN
+F 2 "" H 8750 1750 50  0000 C CNN
+F 3 "" H 8750 1750 50  0000 C CNN
+	1    8750 1750
+	1    0    0    -1  
+$EndComp
+Text Label 9850 1300 0    50   ~ 0
+GPIO_02(Door1_Close_Inp)
+Wire Wire Line
+	9750 1300 9850 1300
+Wire Wire Line
+	9350 1000 9350 950 
+Wire Wire Line
+	9350 1300 9450 1300
+Connection ~ 9350 1300
+Wire Wire Line
+	9250 1300 9350 1300
+Wire Wire Line
+	8350 1300 7850 1300
+Text Label 7850 1300 0    50   ~ 0
+Door2_Close
+Wire Wire Line
+	8750 1300 8950 1300
+$Comp
+L Device:D_Zener D?
+U 1 1 5E8658DC
+P 8750 1500
+F 0 "D?" V 8704 1579 50  0000 L CNN
+F 1 "Z6" V 8795 1579 50  0000 L CNN
+F 2 "" H 8750 1500 50  0001 C CNN
+F 3 "~" H 8750 1500 50  0001 C CNN
+	1    8750 1500
+	0    1    1    0   
+$EndComp
+Connection ~ 8750 1300
+Wire Wire Line
+	8750 1350 8750 1300
+Wire Wire Line
+	8650 1300 8750 1300
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E8658E9
+P 9350 950
+F 0 "#PWR?" H 9350 800 50  0001 C CNN
+F 1 "+3.3V" H 9350 1090 50  0000 C CNN
+F 2 "" H 9350 950 50  0000 C CNN
+F 3 "" H 9350 950 50  0000 C CNN
+	1    9350 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E8658F3
+P 9600 1300
+F 0 "R?" V 9393 1300 50  0000 C CNN
+F 1 "330" V 9484 1300 50  0000 C CNN
+F 2 "" V 9530 1300 50  0001 C CNN
+F 3 "~" H 9600 1300 50  0001 C CNN
+	1    9600 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D?
+U 1 1 5E8658FD
+P 9350 1150
+F 0 "D?" V 9304 1229 50  0000 L CNN
+F 1 "D" V 9395 1229 50  0000 L CNN
+F 2 "" H 9350 1150 50  0001 C CNN
+F 3 "~" H 9350 1150 50  0001 C CNN
+	1    9350 1150
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E865907
+P 9100 1300
+F 0 "R?" V 8893 1300 50  0000 C CNN
+F 1 "4.7k" V 8984 1300 50  0000 C CNN
+F 2 "" V 9030 1300 50  0001 C CNN
+F 3 "~" H 9100 1300 50  0001 C CNN
+	1    9100 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E865911
+P 8500 1300
+F 0 "R?" V 8293 1300 50  0000 C CNN
+F 1 "4.7k" V 8384 1300 50  0000 C CNN
+F 2 "" V 8430 1300 50  0001 C CNN
+F 3 "~" H 8500 1300 50  0001 C CNN
+	1    8500 1300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8750 1650 8750 1750
+$Comp
+L power:GND #PWR?
+U 1 1 5E86591C
+P 8750 3450
+F 0 "#PWR?" H 8750 3200 50  0001 C CNN
+F 1 "GND" H 8750 3300 50  0000 C CNN
+F 2 "" H 8750 3450 50  0000 C CNN
+F 3 "" H 8750 3450 50  0000 C CNN
+	1    8750 3450
+	1    0    0    -1  
+$EndComp
+Text Label 9850 3000 0    50   ~ 0
+GPIO_04(Door1_Light_Inp)
+Wire Wire Line
+	9750 3000 9850 3000
+Wire Wire Line
+	9350 2700 9350 2650
+Wire Wire Line
+	9350 3000 9450 3000
+Connection ~ 9350 3000
+Wire Wire Line
+	9250 3000 9350 3000
+Wire Wire Line
+	8350 3000 7850 3000
+Text Label 7850 3000 0    50   ~ 0
+Light_Common
+Wire Wire Line
+	8750 3000 8950 3000
+$Comp
+L Device:D_Zener D?
+U 1 1 5E86592F
+P 8750 3200
+F 0 "D?" V 8704 3279 50  0000 L CNN
+F 1 "Z6" V 8795 3279 50  0000 L CNN
+F 2 "" H 8750 3200 50  0001 C CNN
+F 3 "~" H 8750 3200 50  0001 C CNN
+	1    8750 3200
+	0    1    1    0   
+$EndComp
+Connection ~ 8750 3000
+Wire Wire Line
+	8750 3050 8750 3000
+Wire Wire Line
+	8650 3000 8750 3000
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E86593C
+P 9350 2650
+F 0 "#PWR?" H 9350 2500 50  0001 C CNN
+F 1 "+3.3V" H 9350 2790 50  0000 C CNN
+F 2 "" H 9350 2650 50  0000 C CNN
+F 3 "" H 9350 2650 50  0000 C CNN
+	1    9350 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E865946
+P 9600 3000
+F 0 "R?" V 9393 3000 50  0000 C CNN
+F 1 "330" V 9484 3000 50  0000 C CNN
+F 2 "" V 9530 3000 50  0001 C CNN
+F 3 "~" H 9600 3000 50  0001 C CNN
+	1    9600 3000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D?
+U 1 1 5E865950
+P 9350 2850
+F 0 "D?" V 9304 2929 50  0000 L CNN
+F 1 "D" V 9395 2929 50  0000 L CNN
+F 2 "" H 9350 2850 50  0001 C CNN
+F 3 "~" H 9350 2850 50  0001 C CNN
+	1    9350 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E86595A
+P 9100 3000
+F 0 "R?" V 8893 3000 50  0000 C CNN
+F 1 "4.7k" V 8984 3000 50  0000 C CNN
+F 2 "" V 9030 3000 50  0001 C CNN
+F 3 "~" H 9100 3000 50  0001 C CNN
+	1    9100 3000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E865964
+P 8500 3000
+F 0 "R?" V 8293 3000 50  0000 C CNN
+F 1 "4.7k" V 8384 3000 50  0000 C CNN
+F 2 "" V 8430 3000 50  0001 C CNN
+F 3 "~" H 8500 3000 50  0001 C CNN
+	1    8500 3000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8750 3350 8750 3450
+$Comp
+L power:GND #PWR?
+U 1 1 5E86596F
+P 8750 4300
+F 0 "#PWR?" H 8750 4050 50  0001 C CNN
+F 1 "GND" H 8750 4150 50  0000 C CNN
+F 2 "" H 8750 4300 50  0000 C CNN
+F 3 "" H 8750 4300 50  0000 C CNN
+	1    8750 4300
+	1    0    0    -1  
+$EndComp
+Text Label 9850 3850 0    50   ~ 0
+GPIO_05(Door1_Lock_Inp)
+Wire Wire Line
+	9750 3850 9850 3850
+Wire Wire Line
+	9350 3550 9350 3500
+Wire Wire Line
+	9350 3850 9450 3850
+Connection ~ 9350 3850
+Wire Wire Line
+	9250 3850 9350 3850
+Wire Wire Line
+	8350 3850 7850 3850
+Text Label 7850 3850 0    50   ~ 0
+Door2_Lock
+Wire Wire Line
+	8750 3850 8950 3850
+$Comp
+L Device:D_Zener D?
+U 1 1 5E865982
+P 8750 4050
+F 0 "D?" V 8704 4129 50  0000 L CNN
+F 1 "Z6" V 8795 4129 50  0000 L CNN
+F 2 "" H 8750 4050 50  0001 C CNN
+F 3 "~" H 8750 4050 50  0001 C CNN
+	1    8750 4050
+	0    1    1    0   
+$EndComp
+Connection ~ 8750 3850
+Wire Wire Line
+	8750 3900 8750 3850
+Wire Wire Line
+	8650 3850 8750 3850
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E86598F
+P 9350 3500
+F 0 "#PWR?" H 9350 3350 50  0001 C CNN
+F 1 "+3.3V" H 9350 3640 50  0000 C CNN
+F 2 "" H 9350 3500 50  0000 C CNN
+F 3 "" H 9350 3500 50  0000 C CNN
+	1    9350 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E865999
+P 9600 3850
+F 0 "R?" V 9393 3850 50  0000 C CNN
+F 1 "330" V 9484 3850 50  0000 C CNN
+F 2 "" V 9530 3850 50  0001 C CNN
+F 3 "~" H 9600 3850 50  0001 C CNN
+	1    9600 3850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D?
+U 1 1 5E8659A3
+P 9350 3700
+F 0 "D?" V 9304 3779 50  0000 L CNN
+F 1 "D" V 9395 3779 50  0000 L CNN
+F 2 "" H 9350 3700 50  0001 C CNN
+F 3 "~" H 9350 3700 50  0001 C CNN
+	1    9350 3700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E8659AD
+P 9100 3850
+F 0 "R?" V 8893 3850 50  0000 C CNN
+F 1 "4.7k" V 8984 3850 50  0000 C CNN
+F 2 "" V 9030 3850 50  0001 C CNN
+F 3 "~" H 9100 3850 50  0001 C CNN
+	1    9100 3850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E8659B7
+P 8500 3850
+F 0 "R?" V 8293 3850 50  0000 C CNN
+F 1 "4.7k" V 8384 3850 50  0000 C CNN
+F 2 "" V 8430 3850 50  0001 C CNN
+F 3 "~" H 8500 3850 50  0001 C CNN
+	1    8500 3850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8750 4200 8750 4300
+$Comp
+L power:GND #PWR?
+U 1 1 5E8659C2
+P 8750 2600
+F 0 "#PWR?" H 8750 2350 50  0001 C CNN
+F 1 "GND" H 8750 2450 50  0000 C CNN
+F 2 "" H 8750 2600 50  0000 C CNN
+F 3 "" H 8750 2600 50  0000 C CNN
+	1    8750 2600
+	1    0    0    -1  
+$EndComp
+Text Label 9850 2150 0    50   ~ 0
+GPIO_03(Door1_Open_Inp)
+Wire Wire Line
+	9750 2150 9850 2150
+Wire Wire Line
+	9350 1850 9350 1800
+Wire Wire Line
+	9350 2150 9450 2150
+Connection ~ 9350 2150
+Wire Wire Line
+	9250 2150 9350 2150
+Wire Wire Line
+	8350 2150 7850 2150
+Text Label 7850 2150 0    50   ~ 0
+Door2_Open
+Wire Wire Line
+	8750 2150 8950 2150
+$Comp
+L Device:D_Zener D?
+U 1 1 5E8659D5
+P 8750 2350
+F 0 "D?" V 8704 2429 50  0000 L CNN
+F 1 "Z6" V 8795 2429 50  0000 L CNN
+F 2 "" H 8750 2350 50  0001 C CNN
+F 3 "~" H 8750 2350 50  0001 C CNN
+	1    8750 2350
+	0    1    1    0   
+$EndComp
+Connection ~ 8750 2150
+Wire Wire Line
+	8750 2200 8750 2150
+Wire Wire Line
+	8650 2150 8750 2150
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E8659E2
+P 9350 1800
+F 0 "#PWR?" H 9350 1650 50  0001 C CNN
+F 1 "+3.3V" H 9350 1940 50  0000 C CNN
+F 2 "" H 9350 1800 50  0000 C CNN
+F 3 "" H 9350 1800 50  0000 C CNN
+	1    9350 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E8659EC
+P 9600 2150
+F 0 "R?" V 9393 2150 50  0000 C CNN
+F 1 "330" V 9484 2150 50  0000 C CNN
+F 2 "" V 9530 2150 50  0001 C CNN
+F 3 "~" H 9600 2150 50  0001 C CNN
+	1    9600 2150
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D?
+U 1 1 5E8659F6
+P 9350 2000
+F 0 "D?" V 9304 2079 50  0000 L CNN
+F 1 "D" V 9395 2079 50  0000 L CNN
+F 2 "" H 9350 2000 50  0001 C CNN
+F 3 "~" H 9350 2000 50  0001 C CNN
+	1    9350 2000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E865A00
+P 9100 2150
+F 0 "R?" V 8893 2150 50  0000 C CNN
+F 1 "4.7k" V 8984 2150 50  0000 C CNN
+F 2 "" V 9030 2150 50  0001 C CNN
+F 3 "~" H 9100 2150 50  0001 C CNN
+	1    9100 2150
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E865A0A
+P 8500 2150
+F 0 "R?" V 8293 2150 50  0000 C CNN
+F 1 "4.7k" V 8384 2150 50  0000 C CNN
+F 2 "" V 8430 2150 50  0001 C CNN
+F 3 "~" H 8500 2150 50  0001 C CNN
+	1    8500 2150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8750 2500 8750 2600
+$Comp
+L Device:LED_Dual_AAC D?
+U 1 1 5E8FBDAC
+P 9550 5150
+F 0 "D?" H 9550 5575 50  0000 C CNN
+F 1 "LED_Dual_AAC" H 9550 5484 50  0000 C CNN
+F 2 "" H 9550 5150 50  0001 C CNN
+F 3 "~" H 9550 5150 50  0001 C CNN
+	1    9550 5150
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:LED_Dual_AAC D?
+U 1 1 5E914148
+P 9550 5800
+F 0 "D?" H 9550 6225 50  0000 C CNN
+F 1 "LED_Dual_AAC" H 9550 6134 50  0000 C CNN
+F 2 "" H 9550 5800 50  0001 C CNN
+F 3 "~" H 9550 5800 50  0001 C CNN
+	1    9550 5800
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E914A93
+P 8900 5050
+F 0 "R?" V 8693 5050 50  0000 C CNN
+F 1 "330" V 8784 5050 50  0000 C CNN
+F 2 "" V 8830 5050 50  0001 C CNN
+F 3 "~" H 8900 5050 50  0001 C CNN
+	1    8900 5050
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E915217
+P 8900 5250
+F 0 "R?" V 8693 5250 50  0000 C CNN
+F 1 "330" V 8784 5250 50  0000 C CNN
+F 2 "" V 8830 5250 50  0001 C CNN
+F 3 "~" H 8900 5250 50  0001 C CNN
+	1    8900 5250
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E915A37
+P 8900 5700
+F 0 "R?" V 8693 5700 50  0000 C CNN
+F 1 "330" V 8784 5700 50  0000 C CNN
+F 2 "" V 8830 5700 50  0001 C CNN
+F 3 "~" H 8900 5700 50  0001 C CNN
+	1    8900 5700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5E916223
+P 8900 5900
+F 0 "R?" V 8693 5900 50  0000 C CNN
+F 1 "330" V 8784 5900 50  0000 C CNN
+F 2 "" V 8830 5900 50  0001 C CNN
+F 3 "~" H 8900 5900 50  0001 C CNN
+	1    8900 5900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	9250 5050 9050 5050
+Wire Wire Line
+	9250 5250 9050 5250
+Wire Wire Line
+	9250 5700 9050 5700
+Wire Wire Line
+	9250 5900 9050 5900
+$Comp
+L power:GND #PWR?
+U 1 1 5E9409EE
+P 9850 6150
+F 0 "#PWR?" H 9850 5900 50  0001 C CNN
+F 1 "GND" H 9850 6000 50  0000 C CNN
+F 2 "" H 9850 6150 50  0000 C CNN
+F 3 "" H 9850 6150 50  0000 C CNN
+	1    9850 6150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9850 5150 9850 5800
+Wire Wire Line
+	9850 5800 9850 6150
+Connection ~ 9850 5800
+$Comp
+L Connector:RJ12 J?
+U 1 1 5E970242
+P 1650 6900
+F 0 "J?" H 1707 7467 50  0000 C CNN
+F 1 "RJ12" H 1707 7376 50  0000 C CNN
+F 2 "Connector_RJ:RJ12_Amphenol_54601" V 1650 6925 50  0001 C CNN
+F 3 "~" V 1650 6925 50  0001 C CNN
+	1    1650 6900
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
