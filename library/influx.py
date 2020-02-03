@@ -8,7 +8,7 @@ from influxdb import InfluxDBClient
 
 class influxWrapper(object):
 
-    def __init__(self,  logger, ):
+    def __init__(self,  logger):
         """Instantiate a connection to the InfluxDB."""
     #    self._host = host
      #   self._port = port
@@ -52,21 +52,28 @@ class influxWrapper(object):
         self._client.write_points(jsonBody, time_precision='ms')
         return True
 
+    def setDBName(self,dbname):
+        self._dbname = dbname
+        return True
+
+    def addTag(self,tag,value):
+        self._measure[tag]=value
+
     def createHaeder(self,tags):
         self._log.debug('Methode: createHeader with tags: %s',tags)
 
         self._measure['measurement']= self._dbname
         self._measure['tags']= tags
 
-        print(self._measure)
+    #    print(self._measure)
         self._log.debug('Header created %s',self._measure)
         return True
 
     def storeMeasurement(self,fields):
-        self._measure['time'] = datetime.datetime.now()
+        self._measure['time'] = datetime.datetime.utcnow().isoformat()
         self._measure['fields'] = fields
         self._measures.append(self._measure)
-        return True
+        return self._measure
 
     def writeMeasures(self):
         self.writePoints(self._measures)

@@ -25,6 +25,7 @@ __license__ = 'GPL v3'
 import os
 import sys
 import time
+import json
 import logging
 from configobj import ConfigObj
 
@@ -32,6 +33,7 @@ from library.ds18b20 import ds18b20
 from library.devicereader import devicereader
 from library.mqttclient import mqttclient
 from library.logger import loghandler
+from library.influx import influxWrapper
 
 
 class manager(object):
@@ -56,22 +58,42 @@ class manager(object):
         self._cfg_log = _config.get('LOGGING',None)
         self._cfg_mqtt = _config.get('BROKER',None)
         self._cfg_onewire = _config.get('ONEWIRE',None)
+        self._cfg_influx = _config.get('INFLUX',None)
         return True
 
     def startLogger(self):
-
         self._root_logger = loghandler(self._cfg_log.get('NAME','ONEWIRE'))
         self._root_logger.handle(self._cfg_log.get('LOGMODE','PRINT'),self._cfg_log)
         self._root_logger.level(self._cfg_log.get('LOGLEVEL','DEBUG'))
         self._rootLoggerName = self._cfg_log.get('NAME', 'ONEWIRE')
         self._log = logging.getLogger(self._rootLoggerName + '.' + self.__class__.__name__)
-
         return True
 
     def startOneWire(self):
         self._log.debug('Methode: startOneWire()')
         os.system('modprobe w1-gpio')
         os.system('modprobe w1-therm')
+        return True
+
+    def connectInfluxDB(self):
+        self._log.debug('Methode: connectInfluxDB()')
+        _host = self._cfg_influx.get('HOST','localhsot')
+        _port = self._cfg_influx.get('PORT',8086)
+        _dbuser = self._cfg_influx.get('DBUSER','default')
+        _dbpasswd = self._cfg_influx.get('DBPASSWD','Geheim')
+        _dbname = self._cfg_influx.get('DBNAME','measurement')
+
+        self._influx = influxWrapper(self._rootLoggerName)
+        self._influx.connectDB(_host,_port,_dbuser,_dbpasswd,_dbname)
+        self._influx.createHaeder(self._cfg_influx.get('HEADER'))
+        return True
+
+
+    def createHeader(self):
+        self._log.debug('Methode: createHeader()')
+        self._influx = influxWrapper(self._rootLoggerName)
+        self._influx.setDBName(self._cfg_influx.get('DBNAME'))
+        self._influx.createHaeder(self._cfg_influx.get('HEADER'))
         return True
 
     def startMqtt(self):
@@ -102,13 +124,18 @@ class manager(object):
             if data is not None:
                 ds.readValue(data)
                 result[deviceId]=ds.getCelsius()
-        print(result)
+      #  print(result)
         return result
 
     def publishData(self,data):
         self._log.debug('Methode: publishData(%s)',data)
+        _publish = self._cfg_mqtt.get('PUBLISH','/ONEWIRE')
+        #_dataString = json.dumps(self._influx.storeMeasurement(data))
+        self._influx.storeMeasurement(data)
+        self._influx.writeMeasures()
+       # self._mqtt.publish('/test',_dataString)
         for key,item in data.items():
-            self._mqtt.publish(key,item)
+            self._mqtt.publish(_publish + '/' + key,item)
 
         return True
 
@@ -117,8 +144,6 @@ class manager(object):
         self._mqtt.disconnect()
         return True
 
-
-
     def run(self):
 
         self.readConfig()
@@ -126,6 +151,8 @@ class manager(object):
 
         self._log.info('Startup, %s %s %s' % (__app__, __VERSION__, __DATE__))
 
+        #self.createHeader()
+        self.connectInfluxDB()
         self.startOneWire()
         self.startMqtt()
         data = self.readOneWire()
