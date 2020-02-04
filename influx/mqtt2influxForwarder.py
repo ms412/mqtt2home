@@ -88,6 +88,9 @@ class manager(object):
             _tag[item] = _t[index]
 
         self._log.debug('Create Influx Tag: %s',_tag)
+     #   print(type(_payload))
+      #  print(type(json.loads(_payload)))
+       # print(json.loads(_payload))
 
         self.connectInfluxDB(_dbname)
         self._influx.createHaeder(_tag)

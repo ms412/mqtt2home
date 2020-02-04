@@ -133,9 +133,10 @@ class manager(object):
         #_dataString = json.dumps(self._influx.storeMeasurement(data))
         self._influx.storeMeasurement(data)
         self._influx.writeMeasures()
-       # self._mqtt.publish('/test',_dataString)
-        for key,item in data.items():
-            self._mqtt.publish(_publish + '/' + key,item)
+        self._mqtt.publish(_publish,json.dumps(data))
+        #self._mqtt.publish('/test',_dataString)
+       # for key,item in data.items():
+        #    self._mqtt.publish(_publish + '/' + key,item)
 
         return True
 
