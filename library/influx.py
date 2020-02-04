@@ -76,8 +76,10 @@ class influxWrapper(object):
         return self._measure
 
     def writeMeasures(self):
-        self.writePoints(self._measures)
-        print(self._measures)
+        self._log.debug('Methode: writeMeasures')
+        if self.writePoints(self._measures):
+            self._log.debug('wrote Points with success')
+       # print(self._measures)
         return True
 
 
