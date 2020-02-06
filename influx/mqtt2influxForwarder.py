@@ -70,10 +70,11 @@ class manager(object):
 
     def callbackBroker(self,client, userdata, message):
         # topic /CH/GARAGEDOOR/ID{0/1}/FUNCTION{OPEN/CLOSE/LOCK/LIGHT
-        # topic /SMARTHOME/CH/BE/ONEWIRE01/TEMPERATURE
+        # topic /SMARTHOME/CH/BE/SENSOR01CH/ONEWIRE01/TEMPERATURE
         # SMARTHOME = database
         #CH = Tag (COUNTRY)
         #BE = Tag (LOCATION)
+        #Node = Tag(Node)
         #ONEWIRE = TAG (BUS)
         #TEMPERATURE = TAG (MEASUREMENT)
         self._log.debug('Methode: callbackBroker called with client: %s userdata: %s message: %s Topic: %s'%(client, userdata, message.payload, message.topic))

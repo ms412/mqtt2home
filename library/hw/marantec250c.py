@@ -2,8 +2,8 @@ import time
 import threading
 import logging
 
-from library.hw.hwIf_raspberry import raspberry
-#from library.hwIf_dummy import raspberry
+from library.hw.raspberryGpio import gpio
+#from library.hw.hwIf_dummy import raspberry
 
 class marantec250c(threading.Thread):
 
@@ -22,7 +22,7 @@ class marantec250c(threading.Thread):
         self._threadId = threadId
         self._callback = callback
       #  self._hwHandle = dummy(logger)
-        self._hwHandle = raspberry(logger)
+        self._hwHandle = gpio(logger)
 
         self._id = config
 
@@ -92,31 +92,31 @@ class marantec250c(threading.Thread):
         if (not (self._hwHandle.ReadPin(self._gpio_closed))) & (not (self._hwHandle.ReadPin(self._gpio_opened))):
             _tempState['DOOR'] = 'MOVING'
             self.setLed('YELLOW')
-            self._log.info('Garagedoor Moving')
+            self._log.debug('Garagedoor Moving')
         elif (not (self._hwHandle.ReadPin(self._gpio_closed))) & self._hwHandle.ReadPin(self._gpio_opened):
             _tempState['DOOR'] = 'OPEN'
             self.setLed('GREEN')
-            self._log.info('Garagedoor Open')
+            self._log.debug('Garagedoor Open')
         elif self._hwHandle.ReadPin(self._gpio_closed) & (not (self._hwHandle.ReadPin(self._gpio_opened))):
             _tempState['DOOR'] ='CLOSE'
             self.setLed('RED')
-            self._log.info('Garagedoor Closed')
+            self._log.debug('Garagedoor Closed')
         else:
             self._log.error('Unknown State')
 
         if self._hwHandle.ReadPin(self._gpio_light):
             _tempState['LIGHT'] = 'ON'
-            self._log.info('Light on')
+            self._log.debug('Light on')
         else:
             _tempState['LIGHT'] = 'OFF'
-            self._log.info('Light off')
+            self._log.debug('Light off')
 
         if self._hwHandle.ReadPin(self._gpio_locked ):
             _tempState['LOCK'] = 'LOCKED'
-            self._log.info('Garagedoor Locked')
+            self._log.debug('Garagedoor Locked')
         else:
             _tempState['LOCK'] = 'UNLOCKED'
-            self._log.info('Garagedoor Unlocked')
+            self._log.debug('Garagedoor Unlocked')
 
     #    print ('DOOR',self._garageDoorState)
      #   print('TEMP', _tempState)
@@ -132,16 +132,21 @@ class marantec250c(threading.Thread):
         self._log.debug('Methode: getGarageDoorState()')
   #      self.changeGaragDoorState()
 
-        json_body = [
-            {
-            "time": time.time(),
-            "fields": {
-                "DOOR" : self._garageDoorState.get('DOOR',None),
-                "LIGHT" : self._garageDoorState.get('LIGHT',None),
-                "LOCK" : self._garageDoorState.get('LOCK',None)
-                }
-            }
-        ]
+ #       json_body = [
+  #          {
+   #         "time": time.time(),
+   #         "fields": {
+    #            "DOOR" : self._garageDoorState.get('DOOR',None),
+     #           "LIGHT" : self._garageDoorState.get('LIGHT',None),
+      #          "LOCK" : self._garageDoorState.get('LOCK',None)
+       #         }
+        #    }
+       # ]
+        json_body = {
+            "DOOR" : self._garageDoorState.get('DOOR',None),
+            "LIGHT" : self._garageDoorState.get('LIGHT',None),
+            "LOCK" : self._garageDoorState.get('LOCK',None)
+        }
 
         self._log.debug('getGarageDoorState Message: {}'.format(json_body))
 

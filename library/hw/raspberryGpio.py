@@ -40,7 +40,7 @@ P1_25    25            DNC
 P1_26    26            SPI_CE1_N    GPIO7
 '''
 
-class raspberry(object):
+class gpio(object):
 
     def __init__(self, logger):
 
@@ -92,10 +92,3 @@ class raspberry(object):
         return True
 
 
-class raspberry(Thread):
-
-    def __init__(self,gpio,logger):
-        Thread.__init__(self)
-
-        _libName = str(__name__.rsplit('.',1)[-1])
-        self._log = logging.getLogger(logger + '.'+ _libName + '.' + self.__class__.__name__)

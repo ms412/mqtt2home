@@ -14,23 +14,21 @@
 
 
 __app__ = "Marantec Adapter"
-__VERSION__ = "0.8"
+__VERSION__ = "0.85"
 __DATE__ = "18.12.2019"
 __author__ = "Markus Schiesser"
 __contact__ = "M.Schiesser@gmail.com"
 __copyright__ = "Copyright (C) 2019 Markus Schiesser"
 __license__ = 'GPL v3'
 
-import os
 import sys
 import time
 import json
 import logging
-import threading
-import gc
+import uuid
 
 from configobj import ConfigObj
-from library.hwadapter import marantec250c
+from library.hw.marantec250c import marantec250c
 from library.mqttclient import mqttclient
 from library.logger import loghandler
 #from library.S0Manager import S0manager
@@ -47,7 +45,10 @@ class manager(object):
         self._cfg_log = None
         self._cfg_gpio = None
 
-        self._watchdogTimer = time.time()
+        #self._watchdogTimer = time.time()
+
+        _watchdogID = uuid.uuid1()
+        self._watchdogTopic = 'WATCHDOG/' + str(_watchdogID)
 
         self._rootLoggerName = ''
 
@@ -81,7 +82,7 @@ class manager(object):
        # print('callback',threadId)
         #print(self._marantecObj[threadId].getGarageDoorState())
 
-        _topic = self._cfg_broker['PUBLISH'] + '/' + threadId + '/STATE'
+        _topic = self._cfg_broker['PUBLISH'] + '/' + threadId
         self._mqtt.publish(_topic, json.dumps(self._marantecObj[threadId].getGarageDoorState()))
 
         return True
@@ -147,19 +148,17 @@ class manager(object):
 
     def start_watchdog(self):
         self._log.debug('Methode: start_mqttWatchdog()')
-        _topic = (self._cfg_broker['PUBLISH']) + '/#'
+
         _callback = self.callbackWatchog
-        if self._mqtt.subscribe(_topic):
+        if self._mqtt.subscribe(self._watchdogTopic):
             if _callback is not None:
-                self._mqtt.callback(_topic, _callback)
+                self._mqtt.callback(self._watchdogTopic, _callback)
         else:
             self._log.error('Failed to setup Watchdog')
             return False
 
         self._watchdogTimer = time.time()
         return True
-
-
 
 
     def run(self):
@@ -183,11 +182,15 @@ class manager(object):
             #    print('Send update')
                 self._log.debug('Timer expired get update')
 
+
                 for k, i in  self._marantecObj.items():
                     i.updateGarageDoorState()
                     self.callbackDevice(k)
 
                 _timeout = time.time() + 30
+
+                self._log.debug('Timer expired update Watchdog')
+                self._mqtt.publish(self._watchdogTopic, time.time())
 
             if time.time() > (self._watchdogTimer + 120):
                 self._log.error('Watchdog timed out... restart system')
@@ -200,7 +203,8 @@ if __name__ == "__main__":
         configfile = sys.argv[1]
     else:
         #configfile = 'C:/Users/markus/PycharmProjects/mqtt@home/garagedoor/marantec2mqtt.cfg'
-        configfile = '/home/pi/mqtt@home/garagedoor/marantec2mqtt.cfg'
+    #    configfile = '/home/pi/mqtt@home/garagedoor/marantec2mqtt.cfg'
+        configfile  = './marantec2mqtt.cfg'
 
 #    while True:
     mgr_handle = manager(configfile)

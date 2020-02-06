@@ -14,7 +14,6 @@ class modbus(object):
 
         self._if = None
 
-
     def setup(self):
         self._log.debug('Methode: setup ()')
         self._if = minimalmodbus.Instrument(self._interface,self._deviceID)

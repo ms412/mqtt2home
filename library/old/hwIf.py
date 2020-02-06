@@ -3,7 +3,7 @@ import sys
 import threading
 import logging
 
-from library.hw.hwIf_raspberry import raspberry
+from library.hw.raspberryGpio import raspberry
 from library.hw.hwIf_dummy import dummy
 
 logger = logging.getLogger(__name__)

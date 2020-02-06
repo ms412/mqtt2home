@@ -23,14 +23,13 @@ __license__ = 'GPL v3'
 
 import os
 import sys
+import json
 import logging
 from configobj import ConfigObj
 
-from library.mqttpush import mqttpush
 from library.modbus import modbus
 from library.mqttclient import mqttclient
 from library.logger import loghandler
-from library.influx import influxWrapper
 
 
 class manager(object):
@@ -40,7 +39,7 @@ class manager(object):
 
         self._logcfg = None
         self._mqttbroker = None
-        self._modbus = None
+        self._modbus = {}
         self._commands = None
 
     def readConfig(self):
@@ -53,65 +52,70 @@ class manager(object):
         self._cfglog = _config.get('LOGGING',None)
         self._cfgMqtt = _config.get('BROKER',None)
         self._cfgModbus = _config.get('MODBUS',None)
-        self._cfgDevice = _config.get('DEVICE',None)
-        self._cfgInflux = _config.get('INFLUX',None)
         return True
 
     def startLogger(self):
-        self._root_logger = loghandler(self._cfg_log.get('NAME','ONEWIRE'))
-        self._root_logger.handle(self._cfg_log.get('LOGMODE','PRINT'),self._cfg_log)
-        self._root_logger.level(self._cfg_log.get('LOGLEVEL','DEBUG'))
-        self._rootLoggerName = self._cfg_log.get('NAME', 'ONEWIRE')
+        self._root_logger = loghandler(self._cfglog.get('NAME','MODBUS'))
+        self._root_logger.handle(self._cfglog.get('LOGMODE','PRINT'),self._cfglog)
+        self._root_logger.level(self._cfglog.get('LOGLEVEL','DEBUG'))
+        self._rootLoggerName = self._cfglog.get('NAME', 'ONEWIRE')
         self._log = logging.getLogger(self._rootLoggerName + '.' + self.__class__.__name__)
         return True
 
-    def connectInfluxDB(self):
-        self._log.debug('Methode: connectInfluxDB()')
-        _host = self._cfgInflux.get('HOST','localhsot')
-        _port = self._cfgInflux.get('PORT',8086)
-        _dbuser = self._cfgInflux.get('DBUSER','default')
-        _dbpasswd = self._cfgInflux.get('DBPASSWD','Geheim')
-        _dbname = self._cfgInflux.get('DBNAME','measurement')
+    def startMqtt(self):
+        self._log.debug('Methode: startMqtt()')
 
-        self._influx = influxWrapper(self._rootLoggerName)
-        self._influx.connectDB(_host,_port,_dbuser,_dbpasswd,_dbname)
-        self._influx.createHaeder(self._cfgInflux.get('HEADER'))
+        self._mqtt = mqttclient(self._rootLoggerName)
+        if self._mqtt.pushclient(self._cfgMqtt):
+            self._log.debug('Successfully connected to mqtt')
+        else:
+            self._log.error('Failed to connect to mqtt')
+            exit()
         return True
 
     def modbus(self):
-      #  result = {}
-        for devicename,item in self._commands.items():
-           # print(key,item['CONFIG']['MODBUSID'])
-            print(devicename,item)
-            self._modbus['DEVICEID']=item['CONFIG']['MODBUSID']
-            self._mgr = modbus(self._modbus,self._log)
-            self._mgr.setup()
-            _channel = item.get('PUBLISH','/OPENAHB/AC')
-            self._influx.addTag('ID',item.get('MODBUSID'))
-            print(item)
-            _result = {}
-            for key,item in item['CALLS'].items():
-                print('data',key, item)
-             #   value =0
-                value = self._mgr.read(item)
-               # value  = 0
-                if value is not None:
-                    _result[key]= value
+        _modbusConfig = {}
+        _modbusConfig['INTERFACE'] = self._cfgModbus.get('INTERFACE','/dev/ttyUSB0')
+        _modbusConfig['BAUDRATE'] = self._cfgModbus.get('BAUDRATE',9800)
+    #    self._modbus = modbus(_modbusConfig,self._rootLoggerName)
+     #   self._modbus.setup()
+        print('xx',type(self._cfgModbus),self._cfgModbus)
 
-            print('Result',_result,devicename)
-            self.publishData(devicename,_result)
+        for key, value in self._cfgModbus.items():
+            print(key)
+
+            if type(value) is not str:
+                _modbusConfig['DEVICEID'] = key
+                self._modbus = modbus(_modbusConfig, self._rootLoggerName)
+                self._modbus.setup()
+                print('yy',value)
+
+                _result = {}
+                for call, args in value.items():
+                    print('data',call, args)
+             #   value =0
+                    data = self._modbus.read(args)
+               # value  = 0
+                    if data is not None:
+                        _result[call]= data
+
+                    print('Result',key,_result,call)
+
+                self.publishData(key,_result)
        # print(result)
         return True
 
-    def publishData(self,channel,data):
-        mqttc = mqttpush(self._mqttbroker)
-        main_channel = self._mqttbroker.get('PUBLISH','/OPENHAB')
 
-        for item, measurement in data.items():
-            _channel = main_channel + '/' + channel + '/' + item
-            self._log.debug('channel: %s, mesage %s'% (_channel,measurement))
-            mqttc.publish(_channel,measurement)
+    def publishData(self,devicename,data):
+        self._log.debug('Methode: publishData(%s,%s)'%(devicename,data))
+        _publish = self._cfgMqtt.get('PUBLISH','/MODBUS') + '/' + devicename
 
+        self._mqtt.publish(_publish,json.dumps(data))
+        return True
+
+    def disconnectMqtt(self):
+        self._log.debug('Methode:disconnectMqtt()')
+        self._mqtt.disconnect()
         return True
 
     def run(self):
@@ -120,8 +124,9 @@ class manager(object):
         self.startLogger()
 
         self._log.info('Startup, %s %s %s'% ( __app__, __VERSION__, __DATE__) )
+        self.startMqtt()
         self.modbus()
-       # self.publishData(data)
+        self.disconnectMqtt()
 
 
 
@@ -130,7 +135,7 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         configfile = sys.argv[1]
     else:
-        configfile ='/opt/Modbus2mqtt/modbus2mqtt.cfg'
+        configfile ='./modbus2mqtt.cfg'
      #   configfile = 'modbus2mqtt.cfg'
 
     mgr_handle = manager(configfile)

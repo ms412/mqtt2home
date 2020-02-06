@@ -1,0 +1,16 @@
+
+
+[Unit]
+Description= MQTT to InfluxDB Forwarder
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/opt/mqtt2influxForwarder/mqtt2influxForwarder.py
+Restart=on-failure
+RestartSec=5s
+
+
+[Install]
+WantedBy=multi-user.target
+
