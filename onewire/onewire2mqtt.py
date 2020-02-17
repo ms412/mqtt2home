@@ -33,8 +33,6 @@ from library.ds18b20 import ds18b20
 from library.devicereader import devicereader
 from library.mqttclient import mqttclient
 from library.logger import loghandler
-from library.influx import influxWrapper
-
 
 class manager(object):
     def __init__(self,configfile='./onewire2mqtt.cfg'):

@@ -67,11 +67,12 @@ class manager(object):
     def measure(self):
         result = {}
         for item, value in self._ultrasonicCfg.items():
+            value = {}
             _trigger = value.get('TRIGGER',24)
             _echo = value.get('ECHO',23)
             us = sr04(_trigger,_echo)
-
-            result['LEVEL'] = us.measure_average()
+            value['LEVEL'] = us.measure_average()
+            result[item]=value
             del us
            # result[item] = 5
 
@@ -86,7 +87,7 @@ class manager(object):
         for key, value in data.items():
             _topic = self._mqttCfg.get('PUBLISH', '/ULTRASONIC')
             _topic = _topic + "/" + key
-            mqttpush.publish(_topic, json.dumps(data))
+            mqttpush.publish(_topic, json.dumps(value))
 
 
         time.sleep(1)
