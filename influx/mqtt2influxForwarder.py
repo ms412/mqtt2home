@@ -85,7 +85,9 @@ class manager(object):
         _t = _topic.split('/')
         _dbname = _t[0]
         _tag = {}
+      #  print(self._cfgInflux.get('TAG'))
         for index, item in enumerate(self._cfgInflux.get('TAG'), start=1):
+     #       print(item,index,_tag)
             _tag[item] = _t[index]
 
         self._log.debug('Create Influx Tag: %s',_tag)
@@ -192,7 +194,7 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         configfile = sys.argv[1]
     else:
-        configfile ='./influx2mqtt.cfg'
+        configfile ='./mqtt2influxForwarder.cfg'
      #   configfile = 'modbus2mqtt.cfg'
 
     mgr_handle = manager(configfile)

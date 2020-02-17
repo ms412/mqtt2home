@@ -15,8 +15,8 @@
 
 
 __app__ = "onewire2mqtt Adapter"
-__VERSION__ = "0.97"
-__DATE__ = "21.12.2019"
+__VERSION__ = "0.971"
+__DATE__ = "16.02.2020"
 __author__ = "Markus Schiesser"
 __contact__ = "M.Schiesser@gmail.com"
 __copyright__ = "Copyright (C) 2019 Markus Schiesser"
@@ -75,38 +75,6 @@ class manager(object):
         os.system('modprobe w1-therm')
         return True
 
-    def connectInfluxDB(self):
-        self._log.debug('Methode: connectInfluxDB()')
-        _host = self._cfg_influx.get('HOST','localhsot')
-        _port = self._cfg_influx.get('PORT',8086)
-        _dbuser = self._cfg_influx.get('DBUSER','default')
-        _dbpasswd = self._cfg_influx.get('DBPASSWD','Geheim')
-        _dbname = self._cfg_influx.get('DBNAME','measurement')
-
-        self._influx = influxWrapper(self._rootLoggerName)
-        self._influx.connectDB(_host,_port,_dbuser,_dbpasswd,_dbname)
-        self._influx.createHaeder(self._cfg_influx.get('HEADER'))
-        return True
-
-
-    def createHeader(self):
-        self._log.debug('Methode: createHeader()')
-        self._influx = influxWrapper(self._rootLoggerName)
-        self._influx.setDBName(self._cfg_influx.get('DBNAME'))
-        self._influx.createHaeder(self._cfg_influx.get('HEADER'))
-        return True
-
-    def startMqtt(self):
-        self._log.debug('Methode: startMqtt()')
-
-        self._mqtt = mqttclient(self._rootLoggerName)
-        if self._mqtt.pushclient(self._cfg_mqtt):
-            self._log.debug('Successfully connected to mqtt')
-        else:
-            self._log.error('Failed to connect to mqtt')
-            exit()
-        return True
-
     def readOneWire(self):
         self._log.debug('Methode: readOneWire()')
         result={}
@@ -129,20 +97,15 @@ class manager(object):
 
     def publishData(self,data):
         self._log.debug('Methode: publishData(%s)',data)
-        _publish = self._cfg_mqtt.get('PUBLISH','/ONEWIRE')
-        #_dataString = json.dumps(self._influx.storeMeasurement(data))
-        self._influx.storeMeasurement(data)
-        self._influx.writeMeasures()
-        self._mqtt.publish(_publish,json.dumps(data))
-        #self._mqtt.publish('/test',_dataString)
-       # for key,item in data.items():
-        #    self._mqtt.publish(_publish + '/' + key,item)
+        mqttpush = mqttclient(self._rootLoggerName)
 
-        return True
+        _topic = self._cfg_mqtt.get('PUBLISH', '/ONEWIRE')
 
-    def stopMqttClient(self):
-        self._log.debug('Methode:stopMqttClient()')
-        self._mqtt.disconnect()
+        mqttpush.pushclient(self._cfg_mqtt)
+        mqttpush.publish(_topic, json.dumps(data))
+        time.sleep(1)
+        mqttpush.disconnect()
+
         return True
 
     def run(self):
@@ -152,14 +115,9 @@ class manager(object):
 
         self._log.info('Startup, %s %s %s' % (__app__, __VERSION__, __DATE__))
 
-        #self.createHeader()
-        self.connectInfluxDB()
         self.startOneWire()
-        self.startMqtt()
         data = self.readOneWire()
         self.publishData(data)
-        time.sleep(5)
-        self.stopMqttClient()
         return True
 
 

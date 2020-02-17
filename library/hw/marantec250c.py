@@ -1,9 +1,17 @@
 import time
+import enum
 import threading
 import logging
-
+from enum import Enum
 from library.hw.raspberryGpio import gpio
 #from library.hw.hwIf_dummy import raspberry
+
+class doorState(Enum):
+    OPEN = 0
+    CLOSE = 100
+    MOVING = 50
+    LOCK =101
+
 
 class marantec250c(threading.Thread):
 
