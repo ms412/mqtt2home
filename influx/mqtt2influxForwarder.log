@@ -1,0 +1,16 @@
+Feb  6 21:43:09 mqtt2influxForwarder.manager: INFO Startup, Modbus2mqtt Adapter 0.95 03.02.2020
+Feb  6 21:43:09 mqtt2influxForwarder.mqttclient.mqttclient: INFO MQTT connected
+Feb  6 22:10:01 mqtt2influxForwarder.manager: INFO Startup, Modbus2mqtt Adapter 0.95 03.02.2020
+Feb  6 22:10:01 mqtt2influxForwarder.mqttclient.mqttclient: INFO MQTT connected
+Feb  6 22:19:00 mqtt2influxForwarder.manager: ERROR Watchdog timed out... restart system
+Feb  6 22:19:09 mqtt2influxForwarder.manager: INFO Startup, Modbus2mqtt Adapter 0.95 03.02.2020
+Feb  6 22:19:09 mqtt2influxForwarder.mqttclient.mqttclient: INFO MQTT connected
+Feb  6 22:21:15 mqtt2influxForwarder.manager: ERROR Watchdog timed out... restart system
+Feb  6 22:22:48 mqtt2influxForwarder.manager: INFO Startup, Modbus2mqtt Adapter 0.95 03.02.2020
+Feb  6 22:22:48 mqtt2influxForwarder.mqttclient.mqttclient: INFO MQTT connected
+Feb  6 22:24:54 mqtt2influxForwarder.manager: ERROR Watchdog timed out... restart system
+Feb  6 22:27:46 mqtt2influxForwarder.manager: INFO Startup, Modbus2mqtt Adapter 0.95 03.02.2020
+Feb  6 22:27:46 mqtt2influxForwarder.mqttclient.mqttclient: INFO MQTT connected
+Feb  6 22:40:12 mqtt2influxForwarder.manager: INFO Startup, Modbus2mqtt Adapter 0.95 03.02.2020
+Feb  6 22:40:12 mqtt2influxForwarder.mqttclient.mqttclient: INFO MQTT connected
+Feb  6 23:10:53 mqtt2influxForwarder.manager: ERROR Watchdog timed out... restart system

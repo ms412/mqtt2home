@@ -105,7 +105,6 @@ class manager(object):
         mqttpush.publish(_topic, json.dumps(data))
         time.sleep(1)
         mqttpush.disconnect()
-
         return True
 
     def run(self):
@@ -119,7 +118,6 @@ class manager(object):
         data = self.readOneWire()
         self.publishData(data)
         return True
-
 
 if __name__ == "__main__":
 

@@ -1,0 +1,110 @@
+Feb  6 14:10:35 marantec.manager: INFO Startup, Marantec Adapter 0.85 18.12.2019
+Feb  6 14:10:35 marantec.mqttclient.mqttclient: INFO MQTT connected
+Feb  6 14:10:37 marantec.hwIf_dummy.raspberry: INFO dummy
+Feb  6 14:10:37 marantec.hwIf_dummy.raspberry: INFO dummy
+Feb  6 14:10:37 marantec.hwIf_dummy.raspberry: INFO config pin 3 , mode IN
+Feb  6 14:10:37 marantec.hwIf_dummy.raspberry: INFO config pin 11 , mode IN
+Feb  6 14:10:37 marantec.hwIf_dummy.raspberry: INFO config pin 13 , mode OUT
+Feb  6 14:10:37 marantec.hwIf_dummy.raspberry: INFO config pin 5 , mode OUT
+Feb  6 14:10:37 marantec.hwIf_dummy.raspberry: INFO config pin 19 , mode OUT
+Feb  6 14:10:37 marantec.hwIf_dummy.raspberry: INFO config pin 15 , mode OUT
+Feb  6 14:10:37 marantec.hwIf_dummy.raspberry: INFO config pin 10 , mode OUT
+Feb  6 14:10:37 marantec.hwIf_dummy.raspberry: INFO config pin 8 , mode OUT
+Feb  6 14:10:37 marantec.marantec250c.marantec250c: ERROR Unknown State
+Feb  6 14:10:37 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:10:37 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:10:38 marantec.hwIf_dummy.raspberry: INFO config pin 21 , mode IN
+Feb  6 14:10:38 marantec.hwIf_dummy.raspberry: INFO config pin 29 , mode IN
+Feb  6 14:10:38 marantec.hwIf_dummy.raspberry: INFO config pin 31 , mode OUT
+Feb  6 14:10:38 marantec.hwIf_dummy.raspberry: INFO config pin 23 , mode OUT
+Feb  6 14:10:38 marantec.hwIf_dummy.raspberry: INFO config pin 35 , mode OUT
+Feb  6 14:10:38 marantec.hwIf_dummy.raspberry: INFO config pin 33 , mode OUT
+Feb  6 14:10:38 marantec.hwIf_dummy.raspberry: INFO config pin 16 , mode OUT
+Feb  6 14:10:38 marantec.hwIf_dummy.raspberry: INFO config pin 12 , mode OUT
+Feb  6 14:10:38 marantec.marantec250c.marantec250c: ERROR Unknown State
+Feb  6 14:10:38 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:10:38 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:11:08 marantec.marantec250c.marantec250c: INFO Garagedoor Moving
+Feb  6 14:11:08 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:11:08 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:11:09 marantec.marantec250c.marantec250c: INFO Garagedoor Closed
+Feb  6 14:11:09 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:11:09 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:11:49 marantec.marantec250c.marantec250c: ERROR Unknown State
+Feb  6 14:11:49 marantec.marantec250c.marantec250c: INFO Light off
+Feb  6 14:11:49 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:11:50 marantec.marantec250c.marantec250c: INFO Garagedoor Closed
+Feb  6 14:11:50 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:11:50 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:12:20 marantec.marantec250c.marantec250c: INFO Garagedoor Open
+Feb  6 14:12:20 marantec.marantec250c.marantec250c: INFO Light off
+Feb  6 14:12:20 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:12:20 marantec.marantec250c.marantec250c: ERROR Unknown State
+Feb  6 14:12:20 marantec.marantec250c.marantec250c: INFO Light off
+Feb  6 14:12:20 marantec.marantec250c.marantec250c: INFO Garagedoor Unlocked
+Feb  6 14:12:51 marantec.marantec250c.marantec250c: INFO Garagedoor Moving
+Feb  6 14:12:51 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:12:51 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:12:52 marantec.marantec250c.marantec250c: ERROR Unknown State
+Feb  6 14:12:52 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:12:52 marantec.marantec250c.marantec250c: INFO Garagedoor Unlocked
+Feb  6 14:13:22 marantec.marantec250c.marantec250c: INFO Garagedoor Closed
+Feb  6 14:13:22 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:13:22 marantec.marantec250c.marantec250c: INFO Garagedoor Unlocked
+Feb  6 14:13:22 marantec.marantec250c.marantec250c: INFO Garagedoor Open
+Feb  6 14:13:22 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:13:22 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:14:03 marantec.marantec250c.marantec250c: INFO Garagedoor Open
+Feb  6 14:14:03 marantec.marantec250c.marantec250c: INFO Light off
+Feb  6 14:14:03 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:14:04 marantec.marantec250c.marantec250c: INFO Garagedoor Open
+Feb  6 14:14:04 marantec.marantec250c.marantec250c: INFO Light off
+Feb  6 14:14:04 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:14:34 marantec.marantec250c.marantec250c: INFO Garagedoor Closed
+Feb  6 14:14:34 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:14:34 marantec.marantec250c.marantec250c: INFO Garagedoor Unlocked
+Feb  6 14:14:35 marantec.marantec250c.marantec250c: INFO Garagedoor Closed
+Feb  6 14:14:35 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:14:35 marantec.marantec250c.marantec250c: INFO Garagedoor Unlocked
+Feb  6 14:15:05 marantec.marantec250c.marantec250c: ERROR Unknown State
+Feb  6 14:15:05 marantec.marantec250c.marantec250c: INFO Light off
+Feb  6 14:15:05 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:15:05 marantec.marantec250c.marantec250c: ERROR Unknown State
+Feb  6 14:15:05 marantec.marantec250c.marantec250c: INFO Light off
+Feb  6 14:15:05 marantec.marantec250c.marantec250c: INFO Garagedoor Unlocked
+Feb  6 14:15:36 marantec.marantec250c.marantec250c: INFO Garagedoor Moving
+Feb  6 14:15:36 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:15:36 marantec.marantec250c.marantec250c: INFO Garagedoor Unlocked
+Feb  6 14:15:37 marantec.marantec250c.marantec250c: INFO Garagedoor Open
+Feb  6 14:15:37 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:15:37 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:16:07 marantec.marantec250c.marantec250c: ERROR Unknown State
+Feb  6 14:16:07 marantec.marantec250c.marantec250c: INFO Light off
+Feb  6 14:16:07 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:16:08 marantec.marantec250c.marantec250c: INFO Garagedoor Open
+Feb  6 14:16:08 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:16:08 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:16:48 marantec.marantec250c.marantec250c: INFO Garagedoor Closed
+Feb  6 14:16:48 marantec.marantec250c.marantec250c: INFO Light off
+Feb  6 14:16:48 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:16:48 marantec.marantec250c.marantec250c: INFO Garagedoor Moving
+Feb  6 14:16:48 marantec.marantec250c.marantec250c: INFO Light off
+Feb  6 14:16:48 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:17:19 marantec.marantec250c.marantec250c: INFO Garagedoor Closed
+Feb  6 14:17:19 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:17:19 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:17:19 marantec.marantec250c.marantec250c: ERROR Unknown State
+Feb  6 14:17:19 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:17:19 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:17:50 marantec.marantec250c.marantec250c: INFO Garagedoor Moving
+Feb  6 14:17:50 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:17:50 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:17:50 marantec.marantec250c.marantec250c: INFO Garagedoor Closed
+Feb  6 14:17:50 marantec.marantec250c.marantec250c: INFO Light off
+Feb  6 14:17:50 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
+Feb  6 14:18:21 marantec.marantec250c.marantec250c: ERROR Unknown State
+Feb  6 14:18:21 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:18:21 marantec.marantec250c.marantec250c: INFO Garagedoor Unlocked
+Feb  6 14:18:22 marantec.marantec250c.marantec250c: INFO Garagedoor Moving
+Feb  6 14:18:22 marantec.marantec250c.marantec250c: INFO Light on
+Feb  6 14:18:22 marantec.marantec250c.marantec250c: INFO Garagedoor Locked
