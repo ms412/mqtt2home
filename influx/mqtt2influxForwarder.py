@@ -13,7 +13,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-__app__ = "Modbus2mqtt Adapter"
+__app__ = "mqtt2inlux Forwarder"
 __VERSION__ = "0.95"
 __DATE__ = "03.02.2020"
 __author__ = "Markus Schiesser"
@@ -39,10 +39,10 @@ class manager(object):
        # self._log = loghandler('ONEWIRE')
         self._configfile = configfile
 
-        self._logcfg = None
-        self._mqttbroker = None
-        self._modbus = None
-        self._commands = None
+      #  self._logcfg = None
+       # self._mqttbroker = None
+       # self._modbus = None
+        #self._commands = None
 
         _watchdogID = uuid.uuid1()
         self._watchdogTopic = 'WATCHDOG/' + str(_watchdogID)
@@ -106,6 +106,8 @@ class manager(object):
         self._log.debug('Methode: callbackWatchdog called with client: %s userdata: %s message: %s Topic: %s' % (client, userdata, message.payload, message.topic))
 
         self._watchdogTimer = time.time()
+
+        return True
 
     def connectInfluxDB(self,dbname):
         self._log.debug('Methode: connectInfluxDB()')
