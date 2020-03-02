@@ -1,0 +1,16 @@
+
+
+[Unit]
+Description= myStrom2mqtt
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/opt/myStrom2mqtt/myStrom2mqtt.py
+Restart=on-failure
+RestartSec=5s
+
+
+[Install]
+WantedBy=multi-user.target
+
