@@ -22,8 +22,8 @@ class mqttclient(object):
                        'SUBSCRIBED': False,
                        'PUBLISHED': 0}
 
-    def __del__(self):
-        print('delte')
+   # def __del__(self):
+    #    print('delte')
        # self._log.debug('Delete MQTT mqttclient Object')
 
     def construct(self):

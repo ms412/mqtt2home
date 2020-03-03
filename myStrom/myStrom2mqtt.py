@@ -68,109 +68,47 @@ class manager(object):
     def startmyStromDevices(self):
         self._log.debug('Methode: startmyStromDevices(config %s)', self._devices)
         for k,v in self._devices.items():
-            print(k,v)
+            #print(k,v)
             self._deviceStore[k] = myStrom(v,k,self.callbackDevice)
             self._deviceStore[k].start()
-            print(k, v,self._deviceStore[k])
+            #print(k, v,self._deviceStore[k])
+        #print('complete')
 
     def getmyStromState(self):
 
+        result = {}
         for k,v in self._devices.items():
-            result = self._deviceStore[k].getState()
-            print(result,k, v )
-
-        return (v,result)
+            result[k] = self._deviceStore[k].getState()
+          #  print(result,k, v )
+        #print(result, type(result))
+        return result
 
     def callbackDevice(self,id):
         self._log.debug('Methode: callbackDevices(DeviceID: %s)', id)
         _instance = self._deviceStore[id]
-        print(_instance)
-
-
-
-    def callbackBroker(self,client, userdata, message):
-        # topic /CH/GARAGEDOOR/ID{0/1}/FUNCTION{OPEN/CLOSE/LOCK/LIGHT
-        # topic /SMARTHOME/CH/BE/SENSOR01CH/ONEWIRE01/TEMPERATURE
-        # SMARTHOME = database
-        #CH = Tag (COUNTRY)
-        #BE = Tag (LOCATION)
-        #Node = Tag(Node)
-        #ONEWIRE = TAG (BUS)
-        #TEMPERATURE = TAG (MEASUREMENT)
-        self._log.debug('Methode: callbackBroker called with client: %s userdata: %s message: %s Topic: %s'%(client, userdata, message.payload, message.topic))
-        _marantecObj = ''
-        _topic = message.topic
-        _payload = message.payload.decode()
-
-        _t = _topic.split('/')
-        _dbname = _t[0]
-        _tag = {}
-      #  print(self._cfgInflux.get('TAG'))
-        for index, item in enumerate(self._cfgInflux.get('TAG'), start=1):
-     #       print(item,index,_tag)
-            _tag[item] = _t[index]
-
-        self._log.debug('Create Influx Tag: %s',_tag)
-     #   print(type(_payload))
-      #  print(type(json.loads(_payload)))
-       # print(json.loads(_payload))
-
-        self.connectInfluxDB(_dbname)
-        self._influx.createHaeder(_tag)
-        self._influx.storeMeasurement(json.loads(_payload))
-        self._influx.writeMeasures()
-
+        #print(_instance)
+        _payload = _instance.getState()
+        self.startMqttClient()
+        self.publishMqtt(id,_payload)
+        self.stopMqttClient()
         return True
 
-    def callbackWatchog(self, client, userdata, message):
-        self._log.debug('Methode: callbackWatchdog called with client: %s userdata: %s message: %s Topic: %s' % (client, userdata, message.payload, message.topic))
+    def startMqttClient(self):
+        self._mqttpush = mqttclient('myStrom2mqtt')
+        self._mqttpush.pushclient(self._brokerCfg)
+        #print('START')
 
-        self._watchdogTimer = time.time()
+    def publishMqtt(self,topic,payload):
+        #print(topic,payload)
+        _topic = self._brokerCfg.get('PUBLISH','SMARTHOME/CH/BE/OPENVPN/MYSTROM')+'/'+topic
+        self._mqttpush.publish(_topic, json.dumps(payload))
+ #       print('publish')
 
+    def stopMqttClient(self):
+#        print('dissconnect')
+        self._mqttpush.disconnect()
         return True
 
-
-
-
-
-    def start_mqtt(self):
-        self._log.debug('Methode: start_mqtt()')
-        self._mqtt = mqttclient(self._rootLoggerName)
-
-        _list = []
-
-     #   _subscribe = (self._cfg_broker['PUBLISH']) + '/#'
-      #  _callback = self.callbackWatchog
-
-       # _list.append({'SUBSCRIBE': _subscribe, 'CALLBACK': _callback})
-
-        _subscribe = (self._brokerCfg['SUBSCRIBE'])+'/#'
-        _callback = self.callbackBroker
-
-        _list.append({'SUBSCRIBE': _subscribe, 'CALLBACK': _callback})
-        self._brokerCfg['SUBSCRIPTION'] = _list
-
-        (state, message) = self._mqtt.fullclient(self._brokerCfg)
-        if state:
-            self._log.debug('mqtt completed with message %s',message)
-        else:
-            self._log.error('Failed to connect: %s',message)
-
-        return False
-
-    def start_watchdog(self):
-        self._log.debug('Methode: start_mqttWatchdog()')
-
-        _callback = self.callbackWatchog
-        if self._mqtt.subscribe(self._watchdogTopic):
-            if _callback is not None:
-                self._mqtt.callback(self._watchdogTopic, _callback)
-        else:
-            self._log.error('Failed to setup Watchdog')
-            return False
-
-        self._watchdogTimer = time.time()
-        return True
 
 
     def run(self):
@@ -185,10 +123,18 @@ class manager(object):
        # self.start_mqtt()
        # self.start_watchdog()
         self.startmyStromDevices()
-        time.sleep(2)
+       # time.sleep(2)
         while(True):
-            time.sleep(10)
-            self.getmyStromState()
+            time.sleep(20)
+       #     print('TIMEOUT')
+            self.startMqttClient()
+            result = self.getmyStromState()
+        #    print(result,type(result))
+            for k,v in result.items():
+         #       print('Publish', k,v)
+                self.publishMqtt(k,v)
+
+            self.stopMqttClient()
 
 
 
