@@ -83,11 +83,15 @@ class manager(object):
         _payload = message.payload.decode()
 
         _t = _topic.split('/')
+        if not len(_t) == 5:
+            self._log.debug('Topic has not the expected length.. ignore message')
+            return False
+
         _dbname = _t[0]
         _tag = {}
       #  print(self._cfgInflux.get('TAG'))
         for index, item in enumerate(self._cfgInflux.get('TAG'), start=1):
-     #       print(item,index,_tag)
+     #          print(item,index,_tag)
             _tag[item] = _t[index]
 
         self._log.debug('Create Influx Tag: %s',_tag)

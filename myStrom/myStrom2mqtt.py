@@ -69,18 +69,18 @@ class manager(object):
         self._log.debug('Methode: startmyStromDevices(config %s)', self._devices)
         for k,v in self._devices.items():
             #print(k,v)
-            self._deviceStore[k] = myStrom(v,k,self.callbackDevice)
+            self._deviceStore[k] = myStrom(v,k,self.callbackDevice,self._rootLoggerName)
             self._deviceStore[k].start()
             #print(k, v,self._deviceStore[k])
         #print('complete')
 
     def getmyStromState(self):
+        self._log.debug('Methode: getmyStromState()')
 
         result = {}
         for k,v in self._devices.items():
             result[k] = self._deviceStore[k].getState()
           #  print(result,k, v )
-        #print(result, type(result))
         return result
 
     def callbackDevice(self,id):
@@ -94,17 +94,20 @@ class manager(object):
         return True
 
     def startMqttClient(self):
-        self._mqttpush = mqttclient('myStrom2mqtt')
+        self._log.debug('Methode: startMqttClient()')
+        self._mqttpush = mqttclient(self._rootLoggerName)
         self._mqttpush.pushclient(self._brokerCfg)
         #print('START')
 
     def publishMqtt(self,topic,payload):
+        self._log.debug('Methode: pubishMqtt(topci %s, payload %s)'% (topic,payload))
         #print(topic,payload)
         _topic = self._brokerCfg.get('PUBLISH','SMARTHOME/CH/BE/OPENVPN/MYSTROM')+'/'+topic
         self._mqttpush.publish(_topic, json.dumps(payload))
  #       print('publish')
 
     def stopMqttClient(self):
+        self._log.debug('Methode: stopMqttClient')
 #        print('dissconnect')
         self._mqttpush.disconnect()
         return True

@@ -47,10 +47,13 @@ class influxWrapper(object):
         return True
 
     def writePoints(self, jsonBody):
-
         self._log.debug("Write points: {0}".format(jsonBody))
-        self._client.write_points(jsonBody, time_precision='ms')
-        return True
+        if self._client.write_points(jsonBody, time_precision='ms'):
+            self._log.info("Wrote data points to DB: %s", jsonBody)
+            return True
+        else:
+            self._log.erro("Failed to write data points to DB %s",jsonBody)
+        return False
 
     def setDBName(self,dbname):
         self._dbname = dbname
@@ -79,6 +82,8 @@ class influxWrapper(object):
         self._log.debug('Methode: writeMeasures')
         if self.writePoints(self._measures):
             self._log.debug('wrote Points %d with success', len(self._measures))
+        #else:
+       #     self._log.error('failed to write datapoints to DB: %s',self._measure)
        # print(self._measures)
         return True
 
