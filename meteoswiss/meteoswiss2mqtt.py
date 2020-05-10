@@ -75,26 +75,26 @@ class manager(object):
         return True
 
     def getStation(self,plz):
-        self._ms = meteoswiss.meteoswissApi()
+        self._ms = meteoswiss.meteoswiss()
         self._stationId = self._ms.getStationByAreaCode(plz)[0]
 
     def getTemperature(self):
-        return self._ms.currentTemperature(self._stationId)[1]
+        return self._ms.temperatureCurrent(self._stationId)[1]
 
     def getRainfall(self):
-        return self._ms.currentRainfall(self._stationId)[1]
+        return self._ms.rainCurrent(self._stationId)[1]
 
     def getPressure(self):
-        return self._ms.currentPressure(self._stationId)['qfe']
+        return self._ms.pressureCurrent(self._stationId)['qfe']
 
     def getSunshine(self):
-        return self._ms.currentSunshine(self._stationId)[1]
+        return self._ms.sunCurrent(self._stationId)[1]
 
     def getWindspeed(self):
-        return self._ms.currentWindSpeed(self._stationId)[1]
+        return self._ms.windCurrent(self._stationId)[1]
 
     def getHumidity(self):
-        return self._ms.currentHumidity(self._stationId)[1]
+        return self._ms.humidityCurrent(self._stationId)[1]
 
     def collectMeasurements(self):
         result = {"MeteoSwiss-Temperature" : self.getTemperature(),
