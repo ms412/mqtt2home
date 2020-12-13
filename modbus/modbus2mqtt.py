@@ -135,8 +135,8 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         configfile = sys.argv[1]
     else:
-        configfile ='./modbus2mqtt.cfg'
-     #   configfile = 'modbus2mqtt.cfg'
+        configfile ='./gpio2mqtt.cfg'
+     #   configfile = 'gpio2mqtt.cfg'
 
     mgr_handle = manager(configfile)
     mgr_handle.run()

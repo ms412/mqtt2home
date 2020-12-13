@@ -91,9 +91,9 @@ class mqttclient(object):
         (_result, _mid) = self._mqttc.subscribe(topic)
 
         if _result == mqtt.MQTT_ERR_SUCCESS:
-            self._log.debug('MQTT subscribed to topic %s with success' % topic)
+            self._log.debug('Methode: subscribe() to topic %s with success' % topic)
         else:
-            self._log.error('MQTT failed to subscribe to topic %s' % topic)
+            self._log.error('Methode: subscribe() failed to subscribe to topic %s' % topic)
             return False
 
         return True
@@ -134,7 +134,7 @@ class mqttclient(object):
         return message
 
     def callback(self, topic, callback):
-        self._log.debug('Methode: message_callback_add(%s, %s' % (topic, callback))
+        self._log.debug('Methode: callback add topic to callback(%s, %s' % (topic, callback))
         self._mqttc.message_callback_add(topic, callback)
         #    print('callbvac',x)
         #   self._log.debug('Registerd Callback Topic: {}'.format(topic))
