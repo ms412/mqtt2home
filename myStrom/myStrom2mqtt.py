@@ -147,7 +147,7 @@ if __name__ == '__main__':
         configfile = sys.argv[1]
     else:
         configfile ='./myStrom2mqtt.cfg'
-     #   configfile = 'gpio2mqtt.cfg'
+     #   configfile = 'piface2mqtt.cfg'
 
     mgr_handle = manager(configfile)
     mgr_handle.run()

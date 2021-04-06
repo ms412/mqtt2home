@@ -69,7 +69,7 @@ class manager(object):
 
     def startOneWire(self):
         self._log.debug('Methode: startOneWire()')
-        os.system('modprobe w1-gpio')
+        os.system('modprobe w1-piface')
         os.system('modprobe w1-therm')
         return True
 

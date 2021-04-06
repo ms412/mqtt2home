@@ -8,6 +8,8 @@ class dummyGpio(object):
         self._pf = None
         self._event = None
 
+        self._io = {}
+
     def config(self,io,direction):
        # self._io = io
         #self._pf = pifacedigitalio.PiFaceDigital()
@@ -23,8 +25,9 @@ class dummyGpio(object):
         pass
 
     def read(self,io):
-        return 1
+        return self._io.get(io,0)
 
     def write(self,io,value):
         print('writeHW', io, value)
+        self._io[io]=value
         return True
