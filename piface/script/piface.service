@@ -1,0 +1,20 @@
+
+#Contents of /etc/systemd/system/piface.service
+#systemctl daemon-reload
+#systemctl enable piface.service
+#systemctl start piface.service
+
+[Unit]
+Description=Pifacemqtt Adapter
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/opt/piface/piface2mqtt.py
+Restart=on-failure
+RestartSec=5s
+
+
+[Install]
+WantedBy=multi-user.target
+

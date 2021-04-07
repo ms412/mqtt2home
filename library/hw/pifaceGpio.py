@@ -7,6 +7,6 @@ class pifaceGpio(object):
         self._pf = pifacedigitalio.PiFaceDigital()
 
     def write(self,io,value):
-        self._pf.relays[io].value = value
+        self._pf.output_pins[io].value = value
 
         return True
